@@ -20,6 +20,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { ChatUser } from '../data/chat-types'
+import Image from 'next/image'
 
 type User = Omit<ChatUser, 'messages'>
 
@@ -90,7 +91,7 @@ export function NewChat({ users, onOpenChange, open }: Props) {
                     className='flex items-center justify-between gap-2'
                   >
                     <div className='flex items-center gap-2'>
-                      <img
+                      <Image
                         src={user.profile || '/placeholder.svg'}
                         alt={user.fullName}
                         className='h-8 w-8 rounded-full'
