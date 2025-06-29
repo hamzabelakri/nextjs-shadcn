@@ -16,7 +16,7 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent,
+  
 } from "@/components/ui/chart"
 
 export const description = "A donut chart with text"
@@ -74,7 +74,7 @@ export function ChartPieDonutText() {
           <PieChart>
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+             // content={<ChartTooltipContent hideLabel />}
             />
             <Pie
               data={chartData}

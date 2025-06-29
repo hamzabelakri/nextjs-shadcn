@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useRef } from 'react'
 import { useRouterState } from '@tanstack/react-router'
 import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'

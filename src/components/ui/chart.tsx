@@ -104,7 +104,7 @@ ${colorConfig
 
 const ChartTooltip = RechartsPrimitive.Tooltip
 
-function ChartTooltipContent({
+/* function ChartTooltipContent({
   active,
   payload,
   className,
@@ -247,8 +247,8 @@ function ChartTooltipContent({
     </div>
   )
 }
-
-const ChartLegend = RechartsPrimitive.Legend
+ */
+/* const ChartLegend = RechartsPrimitive.Legend
 
 function ChartLegendContent({
   className,
@@ -303,7 +303,7 @@ function ChartLegendContent({
     </div>
   )
 }
-
+ */
 // Helper to extract item config from a payload.
 function getPayloadConfigFromPayload(
   config: ChartConfig,
@@ -346,8 +346,8 @@ function getPayloadConfigFromPayload(
 export {
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent,
+  //ChartTooltipContent,
+  //ChartLegend,
+  //ChartLegendContent,
   ChartStyle,
 }

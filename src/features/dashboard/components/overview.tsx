@@ -15,7 +15,7 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent,
+  
 } from "@/components/ui/chart"
 
 export const description = "A multiple bar chart"
@@ -60,7 +60,7 @@ export function ChartBarMultiple() {
             />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
+             // content={<ChartTooltipContent indicator="dashed" />}
             />
             <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
             <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
