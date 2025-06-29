@@ -20,7 +20,7 @@ export default function MainLayout({ children }: Props) {
       <SidebarProvider>
         <SkipToMain />
         <AppSidebar />
-        
+
         <div
           id="content"
           className={cn(
@@ -34,46 +34,45 @@ export default function MainLayout({ children }: Props) {
           )}
         >
           <Header>
-         <TopNav links={topNav} />
-          <div className="ml-auto flex items-center space-x-4">
-            <Search />
-            <ThemeSwitch />
-            <ProfileDropdown />
-          </div>
-        </Header>
-        
+            <div className="flex-1 flex justify-center">
+              <Search />
+            </div>
+            <div className="ml-auto flex items-center space-x-4">
+              <ThemeSwitch />
+              <ProfileDropdown />
+            </div>
+          </Header>
+
           {children}
-          
         </div>
       </SidebarProvider>
     </SearchProvider>
   );
 }
 
-
 const topNav = [
   {
-    title: 'Overview',
-    href: 'dashboard/overview',
+    title: "Overview",
+    href: "dashboard/overview",
     isActive: true,
     disabled: false,
   },
   {
-    title: 'Customers',
-    href: 'dashboard/customers',
+    title: "Customers",
+    href: "dashboard/customers",
     isActive: false,
     disabled: true,
   },
   {
-    title: 'Products',
-    href: 'dashboard/products',
+    title: "Products",
+    href: "dashboard/products",
     isActive: false,
     disabled: true,
   },
   {
-    title: 'Settings',
-    href: 'dashboard/settings',
+    title: "Settings",
+    href: "dashboard/settings",
     isActive: false,
     disabled: true,
   },
-]
+];

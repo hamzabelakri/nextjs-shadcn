@@ -11,36 +11,7 @@ import { DataTableColumnHeader } from './data-table-column-header'
 import { DataTableRowActions } from './data-table-row-actions'
 
 export const columns: ColumnDef<User>[] = [
-  {
-    id: 'select',
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && 'indeterminate')
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label='Select all'
-        className='translate-y-[2px]'
-      />
-    ),
-    meta: {
-      className: cn(
-        'sticky md:table-cell left-0 z-10 rounded-tl',
-        'bg-background transition-colors duration-200 group-hover/row:bg-muted group-data-[state=selected]/row:bg-muted'
-      ),
-    },
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label='Select row'
-        className='translate-y-[2px]'
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
+  
   {
     accessorKey: 'username',
     header: ({ column }) => (
@@ -51,9 +22,7 @@ export const columns: ColumnDef<User>[] = [
     ),
     meta: {
       className: cn(
-        'drop-shadow-[0_1px_2px_rgb(0_0_0_/_0.1)] dark:drop-shadow-[0_1px_2px_rgb(255_255_255_/_0.1)] lg:drop-shadow-none',
-        'bg-background transition-colors duration-200 group-hover/row:bg-muted group-data-[state=selected]/row:bg-muted',
-        'sticky left-6 md:table-cell'
+        'sticky left-4 md:table-cell'
       ),
     },
     enableHiding: false,
@@ -85,7 +54,7 @@ export const columns: ColumnDef<User>[] = [
       <DataTableColumnHeader column={column} title='Phone Number' />
     ),
     cell: ({ row }) => <div>{row.getValue('phoneNumber')}</div>,
-    enableSorting: false,
+    enableSorting: true,
   },
   {
     accessorKey: 'status',
@@ -106,8 +75,8 @@ export const columns: ColumnDef<User>[] = [
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
-    enableHiding: false,
-    enableSorting: false,
+    enableHiding: true,
+    enableSorting: true,
   },
   {
     accessorKey: 'role',
@@ -134,8 +103,8 @@ export const columns: ColumnDef<User>[] = [
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
-    enableSorting: false,
-    enableHiding: false,
+    enableSorting: true,
+    enableHiding: true,
   },
   {
     id: 'actions',
