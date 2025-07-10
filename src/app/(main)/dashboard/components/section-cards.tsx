@@ -2,14 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { 
-  TrendingUp, 
-  TrendingDown, 
   DollarSign, 
   Users, 
   CreditCard, 
-  Activity,
-  ArrowUpRight,
-  ArrowDownRight
+  Activity
 } from 'lucide-react';
 
 export function SectionCards() {
@@ -43,8 +39,6 @@ export function SectionCards() {
       id: 'revenue',
       title: 'Revenue',
       value: '$45.2K',
-      change: '+20%',
-      trend: 'up',
       icon: DollarSign,
       gradient: 'from-emerald-500 to-teal-600',
       darkGradient: 'from-emerald-400 to-teal-500',
@@ -59,8 +53,6 @@ export function SectionCards() {
       id: 'users',
       title: 'Users',
       value: '2.4K',
-      change: '+12%',
-      trend: 'up',
       icon: Users,
       gradient: 'from-blue-500 to-indigo-600',
       darkGradient: 'from-blue-400 to-indigo-500',
@@ -75,8 +67,6 @@ export function SectionCards() {
       id: 'sales',
       title: 'Sales',
       value: '1.2K',
-      change: '+8%',
-      trend: 'up',
       icon: CreditCard,
       gradient: 'from-purple-500 to-pink-600',
       darkGradient: 'from-purple-400 to-pink-500',
@@ -91,8 +81,6 @@ export function SectionCards() {
       id: 'active',
       title: 'Active',
       value: '573',
-      change: '+5%',
-      trend: 'up',
       icon: Activity,
       gradient: 'from-orange-500 to-red-600',
       darkGradient: 'from-orange-400 to-red-500',
@@ -107,7 +95,6 @@ export function SectionCards() {
 
   const cards = cardData.map((card, index) => {
     const Icon = card.icon;
-    const TrendIcon = card.trend === 'up' ? ArrowUpRight : ArrowDownRight;
     const isHovered = hoveredCard === card.id;
     
     return (
@@ -146,19 +133,6 @@ export function SectionCards() {
               ${isHovered ? 'scale-110 rotate-3' : ''}
             `}>
               <Icon className={`w-5 h-5 ${card.accentColor} dark:${card.darkAccentColor}`} />
-            </div>
-            
-            <div className={`
-              flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium
-              transition-all duration-300
-              ${card.trend === 'up' 
-                ? 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-400' 
-                : 'bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-400'
-              }
-              ${isHovered ? 'scale-105' : ''}
-            `}>
-              <TrendIcon className="w-3 h-3" />
-              {card.change}
             </div>
           </div>
           
