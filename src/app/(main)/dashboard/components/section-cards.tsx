@@ -41,10 +41,9 @@ export function SectionCards() {
   const cardData = [
     {
       id: 'revenue',
-      title: 'Total Revenue',
-      value: '$45,231.89',
-      change: '+20.1%',
-      period: 'from last month',
+      title: 'Revenue',
+      value: '$45.2K',
+      change: '+20%',
       trend: 'up',
       icon: DollarSign,
       gradient: 'from-emerald-500 to-teal-600',
@@ -54,15 +53,13 @@ export function SectionCards() {
       accentColor: 'text-emerald-600',
       darkAccentColor: 'text-emerald-400',
       bgAccent: 'bg-emerald-100',
-      darkBgAccent: 'bg-emerald-900/50',
-      progress: 78
+      darkBgAccent: 'bg-emerald-900/50'
     },
     {
-      id: 'subscriptions',
-      title: 'Subscriptions',
-      value: '+2,350',
-      change: '+180.1%',
-      period: 'from last month',
+      id: 'users',
+      title: 'Users',
+      value: '2.4K',
+      change: '+12%',
       trend: 'up',
       icon: Users,
       gradient: 'from-blue-500 to-indigo-600',
@@ -72,15 +69,13 @@ export function SectionCards() {
       accentColor: 'text-blue-600',
       darkAccentColor: 'text-blue-400',
       bgAccent: 'bg-blue-100',
-      darkBgAccent: 'bg-blue-900/50',
-      progress: 92
+      darkBgAccent: 'bg-blue-900/50'
     },
     {
       id: 'sales',
       title: 'Sales',
-      value: '+12,234',
-      change: '+19%',
-      period: 'from last month',
+      value: '1.2K',
+      change: '+8%',
       trend: 'up',
       icon: CreditCard,
       gradient: 'from-purple-500 to-pink-600',
@@ -90,15 +85,13 @@ export function SectionCards() {
       accentColor: 'text-purple-600',
       darkAccentColor: 'text-purple-400',
       bgAccent: 'bg-purple-100',
-      darkBgAccent: 'bg-purple-900/50',
-      progress: 65
+      darkBgAccent: 'bg-purple-900/50'
     },
     {
       id: 'active',
-      title: 'Active Now',
-      value: '+573',
-      change: '+201',
-      period: 'since last hour',
+      title: 'Active',
+      value: '573',
+      change: '+5%',
       trend: 'up',
       icon: Activity,
       gradient: 'from-orange-500 to-red-600',
@@ -108,8 +101,7 @@ export function SectionCards() {
       accentColor: 'text-orange-600',
       darkAccentColor: 'text-orange-400',
       bgAccent: 'bg-orange-100',
-      darkBgAccent: 'bg-orange-900/50',
-      progress: 45
+      darkBgAccent: 'bg-orange-900/50'
     }
   ];
 
@@ -176,30 +168,6 @@ export function SectionCards() {
           
           <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
             {card.value}
-          </div>
-          
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            {card.change} {card.period}
-          </p>
-        </div>
-        
-        {/* Progress Bar */}
-        <div className="relative px-6 pb-6">
-          <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
-            <div 
-              className={`
-                h-full bg-gradient-to-r ${card.gradient} dark:${card.darkGradient} rounded-full
-                transition-all duration-1000 ease-out
-              `}
-              style={{
-                width: isLoaded ? `${card.progress}%` : '0%',
-                transitionDelay: `${(index * 150) + 300}ms`
-              }}
-            ></div>
-          </div>
-          <div className="flex justify-between items-center mt-2">
-            <span className="text-xs text-gray-400 dark:text-gray-500">Progress</span>
-            <span className="text-xs font-medium text-gray-600 dark:text-gray-300">{card.progress}%</span>
           </div>
         </div>
         
