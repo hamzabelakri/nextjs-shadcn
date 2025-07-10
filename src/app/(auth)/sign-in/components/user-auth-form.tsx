@@ -18,6 +18,8 @@ import {
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/password-input'
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
+
 
 type UserAuthFormProps = HTMLAttributes<HTMLFormElement>
 
@@ -42,8 +44,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: 'admin@admin.com',
+      password: 'adminadmin',
     },
   })
 
@@ -51,6 +53,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     setIsLoading(true)
     // eslint-disable-next-line no-console
     console.log(data)
+     redirect(`/dashboard`)
 
     setTimeout(() => {
       setIsLoading(false)

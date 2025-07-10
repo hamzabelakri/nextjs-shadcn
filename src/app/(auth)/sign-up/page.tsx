@@ -1,4 +1,4 @@
-import SignUp from "@/features/auth/sign-up";
+import SignUp  from "./index";
 
 export default function SignUpPage() {
   return <SignUp />;

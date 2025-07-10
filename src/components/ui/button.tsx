@@ -19,6 +19,7 @@ const buttonVariants = cva(
         ghost:
           'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
+        custom: 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-primary-foreground'
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -28,7 +29,7 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: 'custom',
       size: 'default',
     },
   }

@@ -1,19 +1,11 @@
 "use client"
 
-import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import { Row } from '@tanstack/react-table'
-import { IconEdit, IconTrash } from '@tabler/icons-react'
+import { IconEdit, IconTrash, IconEye } from '@tabler/icons-react'
 import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 import { useUsers } from '../context/users-context'
 import { User } from '../data/schema'
+import { motion } from 'framer-motion'
 
 interface DataTableRowActionsProps {
   row: Row<User>
@@ -21,45 +13,71 @@ interface DataTableRowActionsProps {
 
 export function DataTableRowActions({ row }: DataTableRowActionsProps) {
   const { setOpen, setCurrentRow } = useUsers()
+  
   return (
-    <>
-      <DropdownMenu modal={false}>
-        <DropdownMenuTrigger asChild>
+    <div className='flex items-center justify-center gap-1.5 w-full'>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className='flex items-center gap-1.5'
+      >
+        {/* View Action */}
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
           <Button
             variant='ghost'
-            className='data-[state=open]:bg-muted flex h-8 w-8 p-0'
+            size='sm'
+            className='h-8 w-8 p-0 rounded-full hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-blue-950/50 dark:hover:text-blue-400 transition-all duration-200 border border-transparent hover:border-blue-200 dark:hover:border-blue-800'
+            onClick={() => {
+              console.log('View user:', row.original)
+            }}
+            title='View Details'
           >
-            <DotsHorizontalIcon className='h-4 w-4' />
-            <span className='sr-only'>Open menu</span>
+            <IconEye className='h-4 w-4' />
           </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align='end' className='w-[160px]'>
-          <DropdownMenuItem
+        </motion.div>
+
+        {/* Edit Action */}
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Button
+            variant='ghost'
+            size='sm'
+            className='h-8 w-8 p-0 rounded-full hover:bg-amber-50 hover:text-amber-600 dark:hover:bg-amber-950/50 dark:hover:text-amber-400 transition-all duration-200 border border-transparent hover:border-amber-200 dark:hover:border-amber-800'
             onClick={() => {
               setCurrentRow(row.original)
               setOpen('edit')
             }}
+            title='Edit User'
           >
-            Edit
-            <DropdownMenuShortcut>
-              <IconEdit size={16} />
-            </DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem
+            <IconEdit className='h-4 w-4' />
+          </Button>
+        </motion.div>
+
+        {/* Delete Action */}
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Button
+            variant='ghost'
+            size='sm'
+            className='h-8 w-8 p-0 rounded-full hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/50 dark:hover:text-red-400 transition-all duration-200 border border-transparent hover:border-red-200 dark:hover:border-red-800'
             onClick={() => {
               setCurrentRow(row.original)
               setOpen('delete')
             }}
-            className='text-red-500!'
+            title='Delete User'
           >
-            Delete
-            <DropdownMenuShortcut>
-              <IconTrash size={16} />
-            </DropdownMenuShortcut>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </>
+            <IconTrash className='h-4 w-4' />
+          </Button>
+        </motion.div>
+      </motion.div>
+    </div>
   )
 }

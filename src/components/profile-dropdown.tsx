@@ -1,3 +1,4 @@
+"use client'"
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
@@ -13,7 +14,12 @@ import {
 } from '@/components/ui/dropdown-menu'
 import Link from 'next/link'
 import { IconUser } from '@tabler/icons-react';
+import { redirect } from 'next/navigation';
 export function ProfileDropdown() {
+   const handleLogout = () => {
+
+    redirect('/sign-in-2')
+  }
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
@@ -58,7 +64,7 @@ export function ProfileDropdown() {
           <DropdownMenuItem>New Team</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem variant='destructive'>
+        <DropdownMenuItem variant='destructive' onClick={handleLogout}>
           Log out
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>

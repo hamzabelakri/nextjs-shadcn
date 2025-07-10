@@ -1,4 +1,4 @@
-import Otp from "@/features/auth/otp";
+import  Otp  from "./index";
 
 export default function OtpPage() {
   return <Otp />;
