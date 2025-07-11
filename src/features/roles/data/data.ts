@@ -47,6 +47,11 @@ export const permissionModules = [
     permissions: ['view', 'create', 'edit', 'delete']
   },
   {
+    name: 'Audit Logs',
+    key: 'audit-logs',
+    permissions: ['view']
+  },
+  {
     name: 'Settings',
     key: 'settings',
     permissions: ['view', 'edit']
@@ -67,6 +72,7 @@ export const permissionsList = [
   'roles.create',
   'roles.edit', 
   'roles.delete',
+  'audit-logs.view',
   'settings.view',
   'settings.edit',
   'dashboard.view',
