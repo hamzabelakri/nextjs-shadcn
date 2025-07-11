@@ -10,6 +10,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { showSubmittedData } from '@/utils/show-submitted-data'
+import { auditHelpers } from '@/utils/audit-logger'
 import { Role } from '../data/schema'
 import { roleStatuses } from '../data/data'
 import { cn } from '@/lib/utils'
@@ -28,6 +29,9 @@ export function RolesDeleteDialog({
   const statusColor = roleStatuses.get(currentRow.status)
 
   const handleDelete = () => {
+    // Log audit entry
+    auditHelpers.roleDeleted(currentRow)
+    
     // Show what would be deleted (for demo purposes)
     showSubmittedData({
       action: 'delete',

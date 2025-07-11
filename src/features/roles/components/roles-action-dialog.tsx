@@ -3,8 +3,10 @@
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { showSubmittedData } from '@/utils/show-submitted-data'
+import { auditHelpers } from '@/utils/audit-logger'
+import { CodeComparison } from '@/components/magicui/code-comparison'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -59,6 +61,7 @@ export function RolesActionDialog({
   onOpenChange,
 }: RolesActionDialogProps) {
   const isEdit = !!currentRow
+  const [showComparison, setShowComparison] = useState(false)
   
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -92,6 +95,13 @@ export function RolesActionDialog({
       action: isEdit ? 'update' : 'create',
     }
     
+    // Log audit entry
+    if (isEdit && currentRow) {
+      auditHelpers.roleUpdated(currentRow, submitData)
+    } else {
+      auditHelpers.roleCreated(submitData)
+    }
+    
     showSubmittedData(submitData)
     onOpenChange()
     
@@ -106,7 +116,7 @@ export function RolesActionDialog({
     if (checked) {
       form.setValue('permissions', [...currentPermissions, permission])
     } else {
-      form.setValue('permissions', currentPermissions.filter(p => p !== permission))
+      form.setValue('permissions', currentPermissions.filter((p: string) => p !== permission))
     }
   }
 
@@ -114,7 +124,19 @@ export function RolesActionDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>{isEdit ? 'Edit Role' : 'Add New Role'}</DialogTitle>
+          <DialogTitle className="flex items-center justify-between">
+            {isEdit ? 'Edit Role' : 'Add New Role'}
+            {isEdit && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowComparison(!showComparison)}
+                className="ml-2"
+              >
+                {showComparison ? 'Hide' : 'Show'} Changes
+              </Button>
+            )}
+          </DialogTitle>
           <DialogDescription>
             {isEdit 
               ? 'Update role information and permissions' 
@@ -122,6 +144,31 @@ export function RolesActionDialog({
             }
           </DialogDescription>
         </DialogHeader>
+
+        {/* Comparison Section */}
+        {isEdit && showComparison && currentRow && (
+          <div className="mb-4 p-4 border rounded-md bg-gray-50 dark:bg-gray-900">
+            <h4 className="text-sm font-medium mb-3">Current vs. Proposed Changes</h4>
+            <CodeComparison
+              beforeCode={JSON.stringify({
+                name: currentRow.name,
+                description: currentRow.description,
+                permissions: currentRow.permissions,
+                status: currentRow.status,
+              }, null, 2)}
+              afterCode={JSON.stringify({
+                name: watchedPermissions ? form.getValues('name') : currentRow.name,
+                description: watchedPermissions ? form.getValues('description') : currentRow.description,
+                permissions: watchedPermissions || currentRow.permissions,
+                status: watchedPermissions ? form.getValues('status') : currentRow.status,
+              }, null, 2)}
+              language="json"
+              filename={`role-${currentRow.name.toLowerCase().replace(/\s+/g, '-')}.json`}
+              lightTheme="github-light"
+              darkTheme="github-dark"
+            />
+          </div>
+        )}
         
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">

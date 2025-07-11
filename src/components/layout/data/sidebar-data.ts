@@ -3,6 +3,7 @@ import {
   IconBrowserCheck,
   IconBug,
   IconChecklist,
+  IconClipboardList,
   IconError404,
   IconHelp,
   IconLayoutDashboard,
@@ -70,6 +71,11 @@ export const sidebarData: SidebarData = {
     {
       title: 'Other',
       items: [
+        {
+          title: 'Audit Logs',
+          url: '/audit-logs',
+          icon: IconClipboardList,
+        },
         {
           title: 'Settings',
           icon: IconSettings,
