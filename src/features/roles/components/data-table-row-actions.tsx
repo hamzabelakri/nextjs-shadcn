@@ -3,15 +3,15 @@
 import { Row } from '@tanstack/react-table'
 import { IconEdit, IconTrash, IconEye } from '@tabler/icons-react'
 import { Button } from '@/components/ui/button'
-import { useUsers } from '../context/users-context'
-import { User } from '../data/schema'
+import { useRoles } from '../context/roles-context'
+import { Role } from '../data/schema'
 
 interface DataTableRowActionsProps {
-  row: Row<User>
+  row: Row<Role>
 }
 
 export function DataTableRowActions({ row }: DataTableRowActionsProps) {
-  const { setOpen, setCurrentRow } = useUsers()
+  const { setOpen, setCurrentRow } = useRoles()
   return (
     <div className="flex items-center gap-2">
       <Button

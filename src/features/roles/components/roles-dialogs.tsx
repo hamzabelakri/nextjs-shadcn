@@ -1,31 +1,24 @@
 "use client"
 
-import { useUsers } from '../context/users-context'
-import { UsersActionDialog } from './users-action-dialog'
-import { UsersDeleteDialog } from './users-delete-dialog'
-import { UsersInviteDialog } from './users-invite-dialog'
-import { UsersViewDialog } from './users-view-dialog'
+import { useRoles } from '../context/roles-context'
+import { RolesActionDialog } from './roles-action-dialog'
+import { RolesDeleteDialog } from './roles-delete-dialog'
+import { RolesViewDialog } from './roles-view-dialog'
 
-export function UsersDialogs() {
-  const { open, setOpen, currentRow, setCurrentRow } = useUsers()
+export function RolesDialogs() {
+  const { open, setOpen, currentRow, setCurrentRow } = useRoles()
   return (
     <>
-      <UsersActionDialog
-        key='user-add'
+      <RolesActionDialog
+        key='role-add'
         open={open === 'add'}
         onOpenChange={() => setOpen('add')}
       />
 
-      <UsersInviteDialog
-        key='user-invite'
-        open={open === 'invite'}
-        onOpenChange={() => setOpen('invite')}
-      />
-
       {currentRow && (
         <>
-          <UsersViewDialog
-            key={`user-view-${currentRow.id}`}
+          <RolesViewDialog
+            key={`role-view-${currentRow.id}`}
             open={open === 'view'}
             onOpenChange={() => {
               setOpen('view')
@@ -36,8 +29,8 @@ export function UsersDialogs() {
             currentRow={currentRow}
           />
 
-          <UsersActionDialog
-            key={`user-edit-${currentRow.id}`}
+          <RolesActionDialog
+            key={`role-edit-${currentRow.id}`}
             open={open === 'edit'}
             onOpenChange={() => {
               setOpen('edit')
@@ -48,8 +41,8 @@ export function UsersDialogs() {
             currentRow={currentRow}
           />
 
-          <UsersDeleteDialog
-            key={`user-delete-${currentRow.id}`}
+          <RolesDeleteDialog
+            key={`role-delete-${currentRow.id}`}
             open={open === 'delete'}
             onOpenChange={() => {
               setOpen('delete')

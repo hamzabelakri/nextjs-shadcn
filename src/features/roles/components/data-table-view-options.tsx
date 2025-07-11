@@ -54,8 +54,6 @@ export function DataTableViewOptions<TData>({
             })}
         </DropdownMenuContent>
       </DropdownMenu>
-
-      
     </div>
   );
 }
