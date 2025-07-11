@@ -14,10 +14,10 @@ export default function Dashboard() {
     <Main>
       <div className='mb-2 flex flex-wrap items-center justify-between space-y-2'>
         <div>
-          <h2 className='text-2xl font-bold tracking-tight'>Dashboard Overview</h2>
-          <p className='text-muted-foreground'>
-            Real-time insights into your mobility and parking operations
-          </p>
+<h2 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent hover:from-blue-700 hover:to-cyan-700">
+  Dashboard
+</h2>
+          
         </div>
         <div className="flex items-center gap-3">
           <Button variant="custom" size="default">

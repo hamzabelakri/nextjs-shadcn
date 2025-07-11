@@ -25,6 +25,7 @@ import {
 
 import { DataTablePagination } from './data-table-pagination'
 import { DataTableToolbar } from './data-table-toolbar'
+import { Card } from '@/components/ui/card'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -65,7 +66,8 @@ export function DataTable<TData, TValue>({
   return (
     <div className='space-y-4'>
       <DataTableToolbar table={table} />
-      <div className='rounded-md border'>
+      <div className='rounded-md '>
+        <Card>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -114,8 +116,11 @@ export function DataTable<TData, TValue>({
             )}
           </TableBody>
         </Table>
+        
+        <DataTablePagination table={table} />
+        </Card>
       </div>
-      <DataTablePagination table={table} />
+      
     </div>
   )
 }

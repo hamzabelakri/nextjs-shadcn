@@ -27,6 +27,7 @@ import {
 import { Role } from '../data/schema'
 import { DataTablePagination } from './data-table-pagination'
 import { DataTableToolbar } from './data-table-toolbar'
+import { Card } from '@/components/ui/card'
 
 declare module '@tanstack/react-table' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -71,7 +72,8 @@ export function RolesTable({ columns, data }: DataTableProps) {
   return (
     <div className='space-y-4'>
       <DataTableToolbar table={table} />
-      <div className='rounded-md border'>
+      <div className='rounded-md '>
+        <Card>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -128,8 +130,10 @@ export function RolesTable({ columns, data }: DataTableProps) {
             )}
           </TableBody>
         </Table>
+         <DataTablePagination table={table} />
+         </Card>
       </div>
-      <DataTablePagination table={table} />
+     
     </div>
   )
 }
