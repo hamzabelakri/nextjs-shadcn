@@ -5,7 +5,9 @@ import {
   IconShieldCheck,
   IconUsers,
   IconEye,
+  IconUserPlus
 } from '@tabler/icons-react'
+import { useRoles } from '../context/roles-context'
 
 export const roleStatuses = new Map([
   ['active', 'text-green-600 bg-green-50 border-green-200'],
@@ -77,3 +79,18 @@ export const permissionsList = [
   'settings.edit',
   'dashboard.view',
 ]
+
+
+export const useRoleToolbarProps = () => {
+  const { setOpenRole } = useRoles();
+  
+  return {
+    filterPlaceholder: "Filter roles...",
+    buttonLabel: "Add Role",
+    exportButtonLabel: "Export",
+    filerButtonLabel: "Filter",
+    buttonIcon: IconUserPlus,
+    onAddClick: () => setOpenRole("add"),
+  };
+};
+

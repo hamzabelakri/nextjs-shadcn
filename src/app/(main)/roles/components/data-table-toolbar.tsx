@@ -12,7 +12,7 @@ interface DataTableToolbarProps<TData> {
 export function DataTableToolbar<TData>({
   table,
 }: DataTableToolbarProps<TData>) {
-  const { setOpen } = useRoles();
+  const { setOpenRole } = useRoles();
 
   return (
     <div className="flex items-center justify-between">
@@ -44,7 +44,7 @@ export function DataTableToolbar<TData>({
         <Button
           size="sm"
           className="ml-auto hidden h-8 lg:flex"
-          onClick={() => setOpen("add")}
+          onClick={() => setOpenRole("add")}
         >
           <span>Add Role</span> <IconPlus size={18} />
         </Button>

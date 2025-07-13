@@ -67,7 +67,7 @@ export function DataTableToolbar<TData>({
          variant='outline'
           size="sm"
           className="ml-auto hidden h-8 lg:flex"
-          //onClick={() => setOpen("add")}
+        
         >
           <span>Export</span> <IconUpload size={18} />
         </Button>
@@ -75,7 +75,7 @@ export function DataTableToolbar<TData>({
          variant='outline'
           size="sm"
           className="ml-auto hidden h-8 lg:flex"
-          //onClick={() => setOpen("add")}
+          
         >
           <span>Filter</span> <IconFilter size={18} />
         </Button>

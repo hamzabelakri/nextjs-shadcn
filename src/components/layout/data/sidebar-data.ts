@@ -72,8 +72,8 @@ export const sidebarData: SidebarData = {
       title: 'Other',
       items: [
         {
-          title: 'Audit Logs',
-          url: '/audit-logs',
+          title: 'Audit',
+          url: '/audit',
           icon: IconClipboardList,
         },
         {

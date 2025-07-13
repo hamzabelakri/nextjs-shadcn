@@ -6,22 +6,22 @@ import { RolesDeleteDialog } from './roles-delete-dialog'
 import { RolesViewDialog } from './roles-view-dialog'
 
 export function RolesDialogs() {
-  const { open, setOpen, currentRow, setCurrentRow } = useRoles()
+  const { openRole, setOpenRole, currentRow, setCurrentRow } = useRoles()
   return (
     <>
       <RolesActionDialog
         key='role-add'
-        open={open === 'add'}
-        onOpenChange={() => setOpen('add')}
+        open={openRole === 'add'}
+        onOpenChange={() => setOpenRole('add')}
       />
 
       {currentRow && (
         <>
           <RolesViewDialog
             key={`role-view-${currentRow.id}`}
-            open={open === 'view'}
+            open={openRole === 'view'}
             onOpenChange={() => {
-              setOpen('view')
+              setOpenRole('view')
               setTimeout(() => {
                 setCurrentRow(null)
               }, 500)
@@ -31,9 +31,9 @@ export function RolesDialogs() {
 
           <RolesActionDialog
             key={`role-edit-${currentRow.id}`}
-            open={open === 'edit'}
+            open={openRole === 'edit'}
             onOpenChange={() => {
-              setOpen('edit')
+              setOpenRole('edit')
               setTimeout(() => {
                 setCurrentRow(null)
               }, 500)
@@ -43,9 +43,9 @@ export function RolesDialogs() {
 
           <RolesDeleteDialog
             key={`role-delete-${currentRow.id}`}
-            open={open === 'delete'}
+            open={openRole === 'delete'}
             onOpenChange={() => {
-              setOpen('delete')
+              setOpenRole('delete')
               setTimeout(() => {
                 setCurrentRow(null)
               }, 500)

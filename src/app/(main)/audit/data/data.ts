@@ -11,7 +11,9 @@ import {
   IconKey,
   IconSettings,
   IconDeviceDesktop,
+  IconUserPlus,
 } from '@tabler/icons-react'
+import { useAudit } from '../context/audit-context';
 
 export const auditActionTypes = new Map([
   ['create', { color: 'text-green-600 bg-green-50 border-green-200', icon: IconPlus }],
@@ -55,3 +57,15 @@ export const auditFilters = [
     ]
   }
 ]
+
+
+export const useAuditToolbarProps = () => {
+  
+  return {
+    filterPlaceholder: "Filter audit...",
+    exportButtonLabel: "Export",
+    filerButtonLabel: "Filter",
+    buttonIcon: IconUserPlus,
+   
+  };
+};

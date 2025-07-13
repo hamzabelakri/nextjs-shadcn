@@ -7,8 +7,8 @@ import { AuditLog } from '../data/schema'
 type AuditLogsDialogType = 'view' | 'compare'
 
 interface AuditLogsContextType {
-  open: AuditLogsDialogType | null
-  setOpen: (str: AuditLogsDialogType | null) => void
+  openAudit: AuditLogsDialogType | null
+  setOpenAudit: (str: AuditLogsDialogType | null) => void
   currentRow: AuditLog | null
   setCurrentRow: React.Dispatch<React.SetStateAction<AuditLog | null>>
 }
@@ -19,19 +19,19 @@ interface Props {
   children: React.ReactNode
 }
 
-export default function AuditLogsProvider({ children }: Props) {
-  const [open, setOpen] = useDialogState<AuditLogsDialogType>(null)
+export default function AuditProvider({ children }: Props) {
+  const [openAudit, setOpenAudit] = useDialogState<AuditLogsDialogType>(null)
   const [currentRow, setCurrentRow] = useState<AuditLog | null>(null)
 
   return (
-    <AuditLogsContext value={{ open, setOpen, currentRow, setCurrentRow }}>
+    <AuditLogsContext value={{ openAudit, setOpenAudit, currentRow, setCurrentRow }}>
       {children}
     </AuditLogsContext>
   )
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const useAuditLogs = () => {
+export const useAudit = () => {
   const auditLogsContext = React.useContext(AuditLogsContext)
 
   if (!auditLogsContext) {

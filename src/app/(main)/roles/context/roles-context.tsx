@@ -7,8 +7,8 @@ import { Role } from '../data/schema'
 type RolesDialogType = 'add' | 'edit' | 'delete' | 'view'
 
 interface RolesContextType {
-  open: RolesDialogType | null
-  setOpen: (str: RolesDialogType | null) => void
+  openRole: RolesDialogType | null
+  setOpenRole: (str: RolesDialogType | null) => void
   currentRow: Role | null
   setCurrentRow: React.Dispatch<React.SetStateAction<Role | null>>
 }
@@ -20,11 +20,11 @@ interface Props {
 }
 
 export default function RolesProvider({ children }: Props) {
-  const [open, setOpen] = useDialogState<RolesDialogType>(null)
+  const [openRole, setOpenRole] = useDialogState<RolesDialogType>(null)
   const [currentRow, setCurrentRow] = useState<Role | null>(null)
 
   return (
-    <RolesContext value={{ open, setOpen, currentRow, setCurrentRow }}>
+    <RolesContext value={{ openRole, setOpenRole, currentRow, setCurrentRow }}>
       {children}
     </RolesContext>
   )
