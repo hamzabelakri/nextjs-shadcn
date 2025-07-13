@@ -158,10 +158,7 @@ export function SectionCards() {
           absolute top-4 right-4 w-2 h-2 bg-gradient-to-br ${card.gradient} dark:${card.darkGradient} rounded-full
           transition-all duration-300 ${isHovered ? 'scale-150 opacity-70' : 'opacity-30'}
         `}></div>
-        <div className={`
-          absolute bottom-4 left-4 w-1 h-1 bg-gradient-to-br ${card.gradient} dark:${card.darkGradient} rounded-full
-          transition-all duration-300 ${isHovered ? 'scale-[2] opacity-50' : 'opacity-20'}
-        `}></div>
+       
       </div>
     );
   });
@@ -170,16 +167,7 @@ export function SectionCards() {
     <>
       {cards}
       
-      <style jsx>{`
-        .bg-grid-pattern {
-          background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
-          background-size: 20px 20px;
-        }
-        .bg-grid-pattern-dark {
-          background-image: radial-gradient(circle, #334155 1px, transparent 1px);
-          background-size: 20px 20px;
-        }
-      `}</style>
+    
     </>
   );
 }

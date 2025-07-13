@@ -1,4 +1,4 @@
-import { auditLogs } from '@/features/audit-logs/data/audit-logs'
+import { auditLogs } from "@/app/(main)/audit-logs/data/audit-logs"
 
 type AuditAction = 'create' | 'update' | 'delete' | 'view' | 'login' | 'logout'
 type AuditEntity = 'user' | 'role' | 'permission' | 'settings' | 'session'

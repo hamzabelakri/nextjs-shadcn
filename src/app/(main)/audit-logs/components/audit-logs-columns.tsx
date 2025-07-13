@@ -18,7 +18,7 @@ export const columns: ColumnDef<AuditLog>[] = [
     cell: ({ row }) => {
       const timestamp = row.getValue('timestamp') as Date
       return (
-        <div className='w-fit text-nowrap text-sm'>
+        <div className='left-4 w-fit text-nowrap text-sm'>
           {timestamp.toLocaleDateString()} {timestamp.toLocaleTimeString()}
         </div>
       )
@@ -49,7 +49,6 @@ export const columns: ColumnDef<AuditLog>[] = [
       
       return (
         <div className='flex items-center gap-2'>
-          {Icon && <Icon size={16} className='text-muted-foreground' />}
           <Badge variant='outline' className={cn('capitalize', actionType?.color)}>
             {action}
           </Badge>

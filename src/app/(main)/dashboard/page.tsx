@@ -19,12 +19,7 @@ export default function Dashboard() {
 </h2>
           
         </div>
-        <div className="flex items-center gap-3">
-          <Button variant="custom" size="default">
-            <Zap className="mr-2 h-4 w-4" />
-            Live View
-          </Button>
-        </div>
+       
       </div>
       
       <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-y-0 lg:space-x-12'>

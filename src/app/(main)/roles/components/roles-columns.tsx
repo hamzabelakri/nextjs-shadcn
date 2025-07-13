@@ -10,16 +10,21 @@ import { DataTableColumnHeader } from './data-table-column-header'
 import { DataTableRowActions } from './data-table-row-actions'
 
 export const columns: ColumnDef<Role>[] = [
-  {
-    accessorKey: 'name',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Role Name' />
-    ),
-    cell: ({ row }) => (
-      <div className='font-medium'>{row.getValue('name')}</div>
-    ),
-    enableHiding: false,
-  },
+   {
+      accessorKey: 'name',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title='name' />
+      ),
+      cell: ({ row }) => (
+        <LongText className='max-w-36'>{row.getValue('name')}</LongText>
+      ),
+      meta: {
+        className: cn(
+          'sticky left-4 md:table-cell'
+        ),
+      },
+      enableHiding: false,
+    },
   {
     accessorKey: 'description',
     header: ({ column }) => (
