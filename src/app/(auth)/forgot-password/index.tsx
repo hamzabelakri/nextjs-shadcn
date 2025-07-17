@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import AuthLayout from '../auth-layout'
+import AuthLayout from '../layout'
 import { ForgotPasswordForm } from './components/forgot-password-form'
 import Link from 'next/link'
 

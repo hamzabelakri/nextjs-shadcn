@@ -6,12 +6,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import AuthLayout from '../auth-layout'
+import AuthLayout from '../layout'
 import { UserAuthForm } from './components/user-auth-form'
 
 export default function SignIn() {
   return (
-    <AuthLayout>
+   
       <Card className='gap-4'>
         <CardHeader>
           <CardTitle className='text-lg tracking-tight'>Login</CardTitle>
@@ -43,6 +43,6 @@ export default function SignIn() {
           </p>
         </CardFooter>
       </Card>
-    </AuthLayout>
+    
   )
 }
