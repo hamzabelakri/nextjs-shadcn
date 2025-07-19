@@ -1,9 +1,7 @@
 "use client";
 
 import { Main } from "@/components/layout/main";
-import { columns } from "./components/users-columns";
-import { UsersDialogs } from "./components/users-dialogs";
-import { UsersTable } from "./components/users-table";
+
 import UsersProvider, { useUsers } from "./context/users-context";
 import { userListSchema } from "./data/schema";
 import { users } from "./data/users";
@@ -11,6 +9,8 @@ import { useUserToolbarProps } from "./data/data";
 
 import { DataTable } from "@/components/shared/react-table";
 import { IconUsers } from "@tabler/icons-react";
+import { columns } from "./table/users-columns";
+import { UsersDialogs } from "./users-modal";
 
 export default function UsersPage() {
   const userList = userListSchema.parse(users);

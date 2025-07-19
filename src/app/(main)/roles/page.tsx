@@ -1,15 +1,15 @@
 "use client";
 
 import { Main } from "@/components/layout/main";
-import { columns } from "./components/roles-columns";
-import { RolesDialogs } from "./components/roles-dialogs";
-import { RolesTable } from "./components/roles-table";
+
 import RolesProvider from "./context/roles-context";
 import { roleListSchema } from "./data/schema";
 import { roles } from "./data/roles";
 import { useRoleToolbarProps } from "./data/data";
 import { DataTable } from "@/components/shared/react-table";
 import { IconUserCog } from "@tabler/icons-react";
+import { columns } from "./table/roles-columns";
+import { RolesModals } from "./role-modal";
 
 export default function Roles() {
   // Parse roles list
@@ -35,7 +35,7 @@ export default function Roles() {
           />
         </div>
       </Main>
-      <RolesDialogs />
+      <RolesModals />
     </>
   );
 }

@@ -48,17 +48,17 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>
 
-interface RolesActionDialogProps {
+interface RolesActionModalProps {
   currentRow?: Role
   open: boolean
   onOpenChange: () => void
 }
 
-export function RolesActionDialog({
+export function RolesActionModal({
   currentRow,
   open,
   onOpenChange,
-}: RolesActionDialogProps) {
+}: RolesActionModalProps) {
   const isEdit = !!currentRow
   
   const form = useForm<FormData>({

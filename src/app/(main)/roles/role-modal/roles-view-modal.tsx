@@ -18,7 +18,7 @@ interface RolesViewDialogProps {
   onOpenChange: () => void
 }
 
-export function RolesViewDialog({
+export function RolesViewModal({
   currentRow,
   open,
   onOpenChange,

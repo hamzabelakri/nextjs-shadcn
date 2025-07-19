@@ -18,7 +18,7 @@ interface AuditLogComparisonDialogProps {
   onOpenChange: (open: boolean) => void
 }
 
-export function AuditLogComparisonDialog({
+export function AuditComparisonDialog({
   currentRow,
   open,
   onOpenChange,

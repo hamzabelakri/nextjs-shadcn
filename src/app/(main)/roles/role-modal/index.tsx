@@ -1,15 +1,14 @@
 "use client"
 
 import { useRoles } from '../context/roles-context'
-import { RolesActionDialog } from './roles-action-dialog'
-import { RolesDeleteDialog } from './roles-delete-dialog'
-import { RolesViewDialog } from './roles-view-dialog'
-
-export function RolesDialogs() {
+import { RolesActionModal } from './roles-action-modal'
+import { RolesDeleteModal } from './roles-delete-modal'
+import { RolesViewModal } from './roles-view-modal'
+export function RolesModals() {
   const { openRole, setOpenRole, currentRow, setCurrentRow } = useRoles()
   return (
     <>
-      <RolesActionDialog
+      <RolesActionModal
         key='role-add'
         open={openRole === 'add'}
         onOpenChange={() => setOpenRole('add')}
@@ -17,7 +16,7 @@ export function RolesDialogs() {
 
       {currentRow && (
         <>
-          <RolesViewDialog
+          <RolesViewModal
             key={`role-view-${currentRow.id}`}
             open={openRole === 'view'}
             onOpenChange={() => {
@@ -29,7 +28,7 @@ export function RolesDialogs() {
             currentRow={currentRow}
           />
 
-          <RolesActionDialog
+          <RolesActionModal
             key={`role-edit-${currentRow.id}`}
             open={openRole === 'edit'}
             onOpenChange={() => {
@@ -41,7 +40,7 @@ export function RolesDialogs() {
             currentRow={currentRow}
           />
 
-          <RolesDeleteDialog
+          <RolesDeleteModal
             key={`role-delete-${currentRow.id}`}
             open={openRole === 'delete'}
             onOpenChange={() => {

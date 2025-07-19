@@ -6,9 +6,8 @@ import { Badge } from '@/components/ui/badge'
 import LongText from '@/components/long-text'
 import { roleStatuses } from '../data/data'
 import { Role } from '../data/schema'
-import { DataTableColumnHeader } from './data-table-column-header'
 import { useRoles } from '../context/roles-context'
-import { DataTableRowActions } from '@/components/shared/react-table'
+import { DataTableColumnHeader, DataTableRowActions } from '@/components/shared/react-table'
 
 export const columns: ColumnDef<Role>[] = [
    {

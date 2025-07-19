@@ -12,17 +12,17 @@ import { User } from '../data/schema'
 import { userTypes, callTypes } from '../data/data'
 import { cn } from '@/lib/utils'
 
-interface UsersViewDialogProps {
+interface UsersViewModalProps {
   currentRow: User
   open: boolean
   onOpenChange: () => void
 }
 
-export function UsersViewDialog({
+export function UsersViewModal({
   currentRow,
   open,
   onOpenChange,
-}: UsersViewDialogProps) {
+}: UsersViewModalProps) {
   const userType = userTypes.find(({ value }) => value === currentRow.role)
   const statusColor = callTypes.get(currentRow.status)
 

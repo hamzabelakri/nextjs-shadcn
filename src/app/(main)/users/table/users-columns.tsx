@@ -7,8 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import LongText from "@/components/long-text";
 import { callTypes, userTypes } from "../data/data";
 import { User } from "../data/schema";
-import { DataTableColumnHeader } from "./data-table-column-header";
-import { DataTableRowActions } from "@/components/shared/react-table";
+import { DataTableColumnHeader, DataTableRowActions } from "@/components/shared/react-table";
 import { useUsers } from "../context/users-context";
 
 export const columns: ColumnDef<User>[] = [

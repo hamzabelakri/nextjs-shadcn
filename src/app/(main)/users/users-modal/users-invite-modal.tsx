@@ -43,7 +43,7 @@ interface Props {
   onOpenChange: (open: boolean) => void
 }
 
-export function UsersInviteDialog({ open, onOpenChange }: Props) {
+export function UsersInviteModal({ open, onOpenChange }: Props) {
   const form = useForm<UserInviteForm>({
     resolver: zodResolver(formSchema),
     defaultValues: { email: '', role: '', desc: '' },

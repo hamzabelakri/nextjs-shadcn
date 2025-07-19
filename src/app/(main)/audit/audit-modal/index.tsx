@@ -1,16 +1,16 @@
 "use client";
 
 import { useAudit } from "../context/audit-context";
-import { AuditLogComparisonDialog } from "./audit-log-comparison-dialog";
-import { AuditLogViewDialog } from "./audit-log-view-dialog";
+import { AuditComparisonDialog } from "./audit-comparison-modal";
+import { AuditViewDialog } from "./audit-view-modal";
 
-export function AuditsDialogs() {
+export function AuditsModals() {
   const { openAudit, setOpenAudit, currentRow, setCurrentRow } = useAudit();
   return (
     <>
       {currentRow && (
         <>
-          <AuditLogViewDialog
+          <AuditViewDialog
             key={`audit-view-${currentRow.id}`}
             open={openAudit === "view"}
             onOpenChange={() => {
@@ -22,7 +22,7 @@ export function AuditsDialogs() {
             currentRow={currentRow}
           />
 
-          <AuditLogComparisonDialog
+          <AuditComparisonDialog
             key={`audit-compare-${currentRow.id}`}
             open={openAudit === "compare"}
             onOpenChange={() => {

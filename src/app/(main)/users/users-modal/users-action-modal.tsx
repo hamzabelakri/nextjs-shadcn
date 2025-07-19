@@ -93,7 +93,7 @@ interface Props {
   onOpenChange: (open: boolean) => void
 }
 
-export function UsersActionDialog({ currentRow, open, onOpenChange }: Props) {
+export function UsersActionModal({ currentRow, open, onOpenChange }: Props) {
   const isEdit = !!currentRow
   const form = useForm<UserForm>({
     resolver: zodResolver(formSchema),

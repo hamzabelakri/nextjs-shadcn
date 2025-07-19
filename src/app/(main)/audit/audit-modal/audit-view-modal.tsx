@@ -19,7 +19,7 @@ interface AuditLogViewDialogProps {
   onOpenChange: (open: boolean) => void
 }
 
-export function AuditLogViewDialog({
+export function AuditViewDialog({
   currentRow,
   open,
   onOpenChange,

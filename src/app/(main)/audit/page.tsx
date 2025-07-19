@@ -1,12 +1,12 @@
 'use client'
 
 import { Main } from '@/components/layout/main'
-import { columns } from './components/audit-logs-columns'
 import { auditLogs } from './data/audit'
 import { DataTable } from '@/components/shared/react-table'
 import { useAuditToolbarProps } from './data/data'
 import { IconClipboardList } from '@tabler/icons-react'
-import { AuditsDialogs } from './components/audit-dialogs'
+import { columns } from './table/audit-columns'
+import { AuditsModals } from './audit-modal'
 
 export default function AuditPage() {
   const toolbarProps = useAuditToolbarProps();
@@ -16,7 +16,7 @@ export default function AuditPage() {
     <Main>
       <div className='mb-2 flex flex-wrap items-center space-x-2'>
         <IconClipboardList/>
-          <h2 className='text-2xl font-bold tracking-tight'>Audit Logs</h2>
+          <h2 className='text-2xl font-bold tracking-tight'>Audit</h2>
           
        
       </div>
@@ -24,7 +24,7 @@ export default function AuditPage() {
         <DataTable columns={columns} data={auditLogs} toolbarProps={toolbarProps}/>
       </div>
     </Main>
-    <AuditsDialogs />
+    <AuditsModals />
     </>
   )
 }

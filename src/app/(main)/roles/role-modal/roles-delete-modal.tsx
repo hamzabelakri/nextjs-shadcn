@@ -15,17 +15,17 @@ import { Role } from '../data/schema'
 import { roleStatuses } from '../data/data'
 import { cn } from '@/lib/utils'
 
-interface RolesDeleteDialogProps {
+interface RolesDeleteModalProps {
   currentRow: Role
   open: boolean
   onOpenChange: () => void
 }
 
-export function RolesDeleteDialog({
+export function RolesDeleteModal({
   currentRow,
   open,
   onOpenChange,
-}: RolesDeleteDialogProps) {
+}: RolesDeleteModalProps) {
   const statusColor = roleStatuses.get(currentRow.status)
 
   const handleDelete = () => {

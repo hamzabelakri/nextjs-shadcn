@@ -6,9 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import LongText from "@/components/long-text";
 import { auditActionTypes, auditEntityTypes } from "../data/data";
 import { AuditLog } from "../data/schema";
-import { DataTableColumnHeader } from "./data-table-column-header";
 import { useAudit } from "../context/audit-context";
-import { DataTableRowActions } from "@/components/shared/react-table";
+import { DataTableColumnHeader, DataTableRowActions } from "@/components/shared/react-table";
 
 export const columns: ColumnDef<AuditLog>[] = [
   {
