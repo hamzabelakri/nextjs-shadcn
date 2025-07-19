@@ -6,11 +6,13 @@ import { auditLogs } from './data/audit'
 import { DataTable } from '@/components/shared/react-table'
 import { useAuditToolbarProps } from './data/data'
 import { IconClipboardList } from '@tabler/icons-react'
+import { AuditsDialogs } from './components/audit-dialogs'
 
 export default function AuditPage() {
   const toolbarProps = useAuditToolbarProps();
   
   return (
+    <>
     <Main>
       <div className='mb-2 flex flex-wrap items-center space-x-2'>
         <IconClipboardList/>
@@ -22,5 +24,7 @@ export default function AuditPage() {
         <DataTable columns={columns} data={auditLogs} toolbarProps={toolbarProps}/>
       </div>
     </Main>
+    <AuditsDialogs />
+    </>
   )
 }

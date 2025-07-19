@@ -12,7 +12,7 @@ import { Main } from '@/components/layout/main'
 import { ProfileDropdown } from '@/components/profile-dropdown'
 import { Search } from '@/components/search'
 import { ThemeSwitch } from '@/components/theme-switch'
-import SidebarNav from '@/features/settings/components/sidebar-nav'
+import SidebarNav from './components/sidebar-nav'
 
 export default function SettingsLayout({
   children,
@@ -51,7 +51,7 @@ const sidebarNavItems = [
   {
     title: 'Profile',
     icon: <IconUser size={18} />,
-    href: '/settings',
+    href: '/settings/profile',
   },
   {
     title: 'Account',

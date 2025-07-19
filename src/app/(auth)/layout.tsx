@@ -1,27 +1,24 @@
-"use client"
+"use client";
 
-import { UserAuthForm } from './sign-in/components/user-auth-form'
-import FloatingElement from './sign-in-2/components/floating-element'
-import Logo from './sign-in-2/components/logo'
-import { useEffect, useState } from 'react'
-import { AuroraText } from '@/components/magicui/aurora-text'
-
-
+import { UserAuthForm } from "./sign-in/components/user-auth-form";
+import FloatingElement from "./sign-in/components/floating-element";
+import Logo from "./sign-in/components/logo";
+import { useEffect, useState } from "react";
+import { AuroraText } from "@/components/magicui/aurora-text";
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function AuthLayout({ children }: Props) {
-   const [mounted, setMounted] = useState(false);
- 
-   useEffect(() => {
-     setMounted(true);
-   }, []);
- 
- 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
- <div
+    <div
       className={`relative container grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0 overflow-hidden transition-opacity duration-700 ${
         mounted ? "opacity-100" : "opacity-0"
       }`}
@@ -41,7 +38,7 @@ export default function AuthLayout({ children }: Props) {
         </div>
 
         {/* Header with logo */}
-       <Logo/>
+        <Logo />
 
         {/* Center content */}
         <div className="relative z-20 flex flex-col items-center justify-center flex-1 mt-4">
@@ -52,8 +49,7 @@ export default function AuthLayout({ children }: Props) {
             </p>
           </div>
 
-         <FloatingElement/>
-          
+          <FloatingElement />
         </div>
       </div>
 
@@ -63,12 +59,29 @@ export default function AuthLayout({ children }: Props) {
             <h1 className="text-2xl font-semibold tracking-tight">
               <AuroraText>Starter-Kit-Template</AuroraText>
             </h1>
-          
           </div>
-         {children}
-         
+          {children}
+          <section>
+            <p className="text-muted-foreground px-8 text-center text-sm">
+              By clicking login, you agree to our{" "}
+              <a
+                href="/terms"
+                className="hover:text-primary underline underline-offset-4"
+              >
+                Terms of Service
+              </a>{" "}
+              and{" "}
+              <a
+                href="/privacy"
+                className="hover:text-primary underline underline-offset-4"
+              >
+                Privacy Policy
+              </a>
+              .
+            </p>
+          </section>
         </div>
       </div>
     </div>
-  )
+  );
 }

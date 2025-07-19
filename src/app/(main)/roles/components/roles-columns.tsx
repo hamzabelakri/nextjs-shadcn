@@ -7,7 +7,8 @@ import LongText from '@/components/long-text'
 import { roleStatuses } from '../data/data'
 import { Role } from '../data/schema'
 import { DataTableColumnHeader } from './data-table-column-header'
-import { DataTableRowActions } from './data-table-row-actions'
+import { useRoles } from '../context/roles-context'
+import { DataTableRowActions } from '@/components/shared/react-table'
 
 export const columns: ColumnDef<Role>[] = [
    {
@@ -95,7 +96,27 @@ export const columns: ColumnDef<Role>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Actions' />
     ),
-    cell: DataTableRowActions,
+    cell: ({ row }) => {
+  const { setOpenRole, setCurrentRow } = useRoles()
+    
+          return (
+            <DataTableRowActions
+              row={row}
+              onView={(data) => {
+                setCurrentRow(data);
+                setOpenRole("view");
+              }}
+              onEdit={(data) => {
+                setCurrentRow(data);
+                setOpenRole("edit");
+              }}
+              onDelete={(data) => {
+                setCurrentRow(data);
+                setOpenRole("delete");
+              }}
+            />
+          );
+        },
     enableSorting: false,
     enableHiding: false,
   },

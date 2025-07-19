@@ -17,30 +17,14 @@ export default function SignUp() {
         Enter your email and password to create an account. Already have an
         account?
         <Link
-          href="/sign-in-2"
+          href="/sign-in"
           className="hover:text-primary underline underline-offset-4"
         >
           Sign In
         </Link>
       </p>
       <SignUpForm />
-      <p className="text-muted-foreground px-8 text-center text-sm">
-        By clicking login, you agree to our{" "}
-        <a
-          href="/terms"
-          className="hover:text-primary underline underline-offset-4"
-        >
-          Terms of Service
-        </a>{" "}
-        and{" "}
-        <a
-          href="/privacy"
-          className="hover:text-primary underline underline-offset-4"
-        >
-          Privacy Policy
-        </a>
-        .
-      </p>
+     
     </>
   );
 }
