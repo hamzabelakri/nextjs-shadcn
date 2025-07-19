@@ -12,7 +12,7 @@ import { UserAuthForm } from './components/user-auth-form'
 export default function SignIn() {
   return (
    
-      <Card className='gap-4'>
+      <Card className='gap-4 '>
         <CardHeader>
           <CardTitle className='text-lg tracking-tight'>Login</CardTitle>
           <CardDescription>
