@@ -18,7 +18,7 @@ import { redirect } from 'next/navigation';
 export function ProfileDropdown() {
    const handleLogout = () => {
 
-    redirect('/sign-in-2')
+    redirect('/sign-in')
   }
   return (
     <DropdownMenu modal={false}>

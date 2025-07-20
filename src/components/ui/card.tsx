@@ -12,7 +12,7 @@ function Card({ className, paddingY = 'py-6', bg = 'bg-card', ...props }: CardPr
       data-slot='card' 
       className={cn(
          bg,
-        'text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm',
+        'text-card-foreground flex flex-col gap-6 rounded-xl border shadow-sm',
         paddingY,
         className
       )}

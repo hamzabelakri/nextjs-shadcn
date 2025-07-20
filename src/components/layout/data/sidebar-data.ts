@@ -19,6 +19,7 @@ import {
   IconUserCog,
   IconUserOff,
   IconUsers,
+  IconShieldCog
 } from '@tabler/icons-react'
 import { AudioWaveform, Command, GalleryVerticalEnd } from 'lucide-react'
 import { ClerkLogo } from '@/assets/clerk-logo'
@@ -64,7 +65,7 @@ export const sidebarData: SidebarData = {
         {
           title: 'Roles',
           url: '/roles',
-          icon: IconUserCog,
+          icon: IconShieldCog,
         },
       ],
     },

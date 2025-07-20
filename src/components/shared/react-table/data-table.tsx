@@ -90,7 +90,7 @@ export function DataTable<TData extends RowData>({
     <div className="space-y-4">
       <DataTableToolbar table={table} toolbarProps={toolbarProps}/>
       <div className="rounded-md ">
-        <Card paddingY="py-0">
+        <Card paddingY="pb-4">
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (

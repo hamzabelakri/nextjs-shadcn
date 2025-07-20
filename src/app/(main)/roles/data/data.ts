@@ -10,8 +10,8 @@ import {
 import { useRoles } from '../context/roles-context'
 
 export const roleStatuses = new Map([
-  ['active', 'text-green-600 bg-green-50 border-green-200'],
-  ['inactive', 'text-red-600 bg-red-50 border-red-200'],
+  ['active', 'bg-teal-100/30 text-teal-900 dark:text-teal-200 border-teal-200'],
+  ['inactive', 'bg-neutral-300/40 border-neutral-300'],
 ])
 
 export const roleTypes = [

@@ -16,12 +16,12 @@ import {
 import { useAudit } from '../context/audit-context';
 
 export const auditActionTypes = new Map([
-  ['create', { color: 'text-green-600 bg-green-50 border-green-200', icon: IconPlus }],
-  ['update', { color: 'text-blue-600 bg-blue-50 border-blue-200', icon: IconEdit }],
-  ['delete', { color: 'text-red-600 bg-red-50 border-red-200', icon: IconTrash }],
-  ['view', { color: 'text-gray-600 bg-gray-50 border-gray-200', icon: IconEye }],
-  ['login', { color: 'text-green-600 bg-green-50 border-green-200', icon: IconLogin }],
-  ['logout', { color: 'text-orange-600 bg-orange-50 border-orange-200', icon: IconLogout }],
+  ['create', { color: 'bg-teal-100/30 text-teal-900 dark:text-teal-200 border-teal-200', icon: IconPlus }],
+  ['update', { color: 'bg-sky-200/40 text-sky-900 dark:text-sky-100 border-sky-300', icon: IconEdit }],
+  ['delete', { color: 'bg-destructive/10 dark:bg-destructive/50 text-destructive dark:text-primary border-destructive/10', icon: IconTrash }],
+  ['view', { color: 'bg-indigo-100/30 text-indigo-900 dark:text-indigo-200 border-indigo-300', icon: IconEye }],
+  ['login', { color: 'bg-neutral-300/40 border-neutral-300', icon: IconLogin }],
+  ['logout', { color: 'bg-rose-100/30 text-rose-900 dark:text-rose-200 border-rose-200', icon: IconLogout }],
 ])
 
 export const auditEntityTypes = new Map([

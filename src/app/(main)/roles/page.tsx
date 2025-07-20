@@ -7,7 +7,7 @@ import { roleListSchema } from "./data/schema";
 import { roles } from "./data/roles";
 import { useRoleToolbarProps } from "./data/data";
 import { DataTable } from "@/components/shared/react-table";
-import { IconUserCog } from "@tabler/icons-react";
+import { IconShieldCog, IconUserCog } from "@tabler/icons-react";
 import { columns } from "./table/roles-columns";
 import { RolesModals } from "./role-modal";
 
@@ -23,7 +23,7 @@ export default function Roles() {
         <div className="mb-2 flex flex-wrap items-center space-x-2">
          
           <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-          <IconUserCog className="size-5" />
+          <IconShieldCog className="size-5" />
         </div>
          
           

@@ -18,7 +18,7 @@ export const auditLogs: AuditLog[] = [
       role: { after: 'manager' },
       status: { after: 'active' }
     },
-    timestamp: new Date('2024-01-20T10:30:00Z'),
+    timestamp: '2024-01-20',
   },
   {
     id: '2',
@@ -38,7 +38,7 @@ export const auditLogs: AuditLog[] = [
         after: ['users.view', 'users.edit', 'users.create']
       }
     },
-    timestamp: new Date('2024-01-20T09:15:00Z'),
+    timestamp: '2024-01-20',
   },
   {
     id: '3',
@@ -56,7 +56,7 @@ export const auditLogs: AuditLog[] = [
       firstName: { before: 'Robert', after: 'Bob' },
       phoneNumber: { before: '+1234567890', after: '+1987654321' }
     },
-    timestamp: new Date('2024-01-20T08:45:00Z'),
+    timestamp: '2024-01-20',
   },
   {
     id: '4',
@@ -70,7 +70,7 @@ export const auditLogs: AuditLog[] = [
     description: 'User logged into the system',
     ipAddress: '192.168.1.102',
     userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-    timestamp: new Date('2024-01-20T07:30:00Z'),
+    timestamp: '2024-01-20',
   },
   {
     id: '5',
@@ -89,7 +89,7 @@ export const auditLogs: AuditLog[] = [
       email: { before: 'old.user@example.com' },
       role: { before: 'viewer' }
     },
-    timestamp: new Date('2024-01-19T16:20:00Z'),
+    timestamp: '2024-01-19',
   },
   {
     id: '6',
@@ -107,6 +107,6 @@ export const auditLogs: AuditLog[] = [
       sessionTimeout: { before: '30', after: '60' },
       maxLoginAttempts: { before: '3', after: '5' }
     },
-    timestamp: new Date('2024-01-19T14:10:00Z'),
+    timestamp: '2024-01-19',
   }
 ]

@@ -10,18 +10,16 @@ import { useAudit } from "../context/audit-context";
 import { DataTableColumnHeader, DataTableRowActions } from "@/components/shared/react-table";
 
 export const columns: ColumnDef<AuditLog>[] = [
-  {
+{
     accessorKey: "timestamp",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Timestamp" />
+      <DataTableColumnHeader column={column} title="timestamp" />
     ),
-    cell: ({ row }) => {
-      const timestamp = row.getValue("timestamp") as Date;
-      return (
-        <div className="left-4 w-fit text-nowrap text-sm">
-          {timestamp.toLocaleDateString()} {timestamp.toLocaleTimeString()}
-        </div>
-      );
+    cell: ({ row }) => (
+      <LongText className="max-w-36">{row.getValue("timestamp")}</LongText>
+    ),
+    meta: {
+      className: cn("sticky left-4 md:table-cell"),
     },
     enableHiding: false,
   },

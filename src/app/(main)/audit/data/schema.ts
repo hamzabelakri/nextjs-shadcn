@@ -35,7 +35,7 @@ const auditLogSchema = z.object({
     before: z.any().optional(),
     after: z.any().optional(),
   })).optional(),
-  timestamp: z.coerce.date(),
+  timestamp: z.string(),
 })
 export type AuditLog = z.infer<typeof auditLogSchema>
 
