@@ -15,7 +15,11 @@ export default function AuditPage() {
     <>
     <Main>
       <div className='mb-2 flex flex-wrap items-center space-x-2'>
-        <IconClipboardList/>
+        
+         <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+          <IconClipboardList className="size-5" />
+        </div>
+        
           <h2 className='text-2xl font-bold tracking-tight'>Audit</h2>
           
        

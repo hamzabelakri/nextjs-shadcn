@@ -44,7 +44,7 @@ const chartConfig = {
 
 export function ChartBarMultiple() {
   return (
-    <Card className="col-span-6 ">
+    <Card className="col-span-6 transition-all duration-200 hover:scale-[1.02] hover:shadow-md dark:hover:bg-muted">
       <CardHeader>
         <CardTitle>Bar Chart - Multiple</CardTitle>
         <CardDescription>January - June 2024</CardDescription>

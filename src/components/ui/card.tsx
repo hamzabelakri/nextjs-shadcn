@@ -3,14 +3,16 @@ import { cn } from '@/lib/utils'
 
 type CardProps = React.ComponentProps<'div'> & {
   paddingY?: string; 
+  bg?: string; 
 };
 
-function Card({ className, paddingY = 'py-6', ...props }: CardProps) {
+function Card({ className, paddingY = 'py-6', bg = 'bg-card', ...props }: CardProps) {
   return (
     <div
       data-slot='card' 
       className={cn(
-        'bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm',
+         bg,
+        'text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm',
         paddingY,
         className
       )}

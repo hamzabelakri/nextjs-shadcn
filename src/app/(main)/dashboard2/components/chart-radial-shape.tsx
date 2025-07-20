@@ -61,7 +61,7 @@ export function ChartPieDonutText() {
   }, [])
 
   return (
-    <Card className="flex flex-col col-span-1 lg:col-span-2">
+    <Card className="flex flex-col col-span-1 lg:col-span-2 transition-all duration-200 hover:scale-[1.02] hover:shadow-md dark:hover:bg-muted">
       <CardHeader className="items-center pb-0">
         <CardTitle>Pie Chart - Donut with Text</CardTitle>
         <CardDescription>January - June 2024</CardDescription>

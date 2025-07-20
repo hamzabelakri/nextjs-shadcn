@@ -13,16 +13,18 @@ export default function Dashboard() {
   return (
     <Main>
       <div className="mb-2 flex items-center  space-x-2">
-         <IconLayoutDashboard/>
+        <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+          <IconLayoutDashboard className="size-5" />
+        </div>
+
         <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
-       
       </div>
       <Tabs
         orientation="vertical"
         defaultValue="overview"
         className="mt-6 space-y-4"
       >
-       {/*  <div className="w-full overflow-x-auto pb-2">
+        {/*  <div className="w-full overflow-x-auto pb-2">
           <TabsList>
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="analytics" disabled>
@@ -36,7 +38,7 @@ export default function Dashboard() {
             </TabsTrigger>
           </TabsList>
         </div> */}
-        <TabsContent value="overview" className="space-y-4">
+        <TabsContent value="overview" className="space-y-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <SectionCards />
           </div>

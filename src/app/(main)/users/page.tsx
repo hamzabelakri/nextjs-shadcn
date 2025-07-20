@@ -19,7 +19,11 @@ export default function UsersPage() {
   <>
       <Main>
         <div className="mb-2 flex flex-wrap items-center space-x-2">
-         <IconUsers/>
+        
+
+          <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+          <IconUsers className="size-5" />
+        </div>
             <h2 className="text-2xl font-bold tracking-tight">User List</h2>
          
         </div>

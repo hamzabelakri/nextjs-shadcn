@@ -140,7 +140,7 @@ export function ChartBarInteractive() {
   )
 
   return (
-     <Card className="col-span-1 lg:col-span-4 py-0">
+     <Card className="col-span-1 lg:col-span-4 py-0 transition-all duration-200 hover:scale-[1.02] hover:shadow-md">
       <CardHeader className="flex flex-col items-stretch border-b !p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 pt-4 pb-3 sm:!py-0">
           <CardTitle>Bar Chart - Interactive</CardTitle>

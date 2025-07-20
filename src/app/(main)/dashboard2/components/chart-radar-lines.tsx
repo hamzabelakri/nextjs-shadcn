@@ -42,7 +42,7 @@ const chartConfig = {
 
 export function ChartRadarLinesOnly() {
   return (
-    <Card className="col-span-6 ">
+    <Card className="col-span-6 transition-all duration-200 hover:scale-[1.02] hover:shadow-md dark:hover:bg-muted">
       <CardHeader className="items-center pb-4">
         <CardTitle>Radar Chart - Lines Only</CardTitle>
         <CardDescription>
