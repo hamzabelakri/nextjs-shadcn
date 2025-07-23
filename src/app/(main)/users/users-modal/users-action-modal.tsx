@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import { z } from 'zod'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { showSubmittedData } from '@/utils/show-submitted-data'
-import { Button } from '@/components/ui/button'
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { showSubmittedData } from "@/utils/show-submitted-data";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -12,7 +12,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
+} from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -20,301 +20,354 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { PasswordInput } from '@/components/password-input'
-import { SelectDropdown } from '@/components/select-dropdown'
-import { userTypes } from '../data/data'
-import { User } from '../data/schema'
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/password-input";
+import { SelectDropdown } from "@/components/select-dropdown";
+import { userTypes, callTypes } from "../data/data";
+import { User } from "../data/schema";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import { IconUserSearch, IconUserEdit, IconUserPlus } from "@tabler/icons-react";
 
 const formSchema = z
   .object({
-    firstName: z.string().min(1, { message: 'First Name is required.' }),
-    lastName: z.string().min(1, { message: 'Last Name is required.' }),
-    username: z.string().min(1, { message: 'Username is required.' }),
-    phoneNumber: z.string().min(1, { message: 'Phone number is required.' }),
+    firstName: z.string().min(1, { message: "First Name is required." }),
+    lastName: z.string().min(1, { message: "Last Name is required." }),
+    username: z.string().min(1, { message: "Username is required." }),
+    phoneNumber: z.string().min(1, { message: "Phone number is required." }),
     email: z
       .string()
-      .min(1, { message: 'Email is required.' })
-      .email({ message: 'Email is invalid.' }),
+      .min(1, { message: "Email is required." })
+      .email({ message: "Email is invalid." }),
     password: z.string().transform((pwd) => pwd.trim()),
-    role: z.string().min(1, { message: 'Role is required.' }),
+    role: z.string().min(1, { message: "Role is required." }),
     confirmPassword: z.string().transform((pwd) => pwd.trim()),
     isEdit: z.boolean(),
   })
   .superRefine(({ isEdit, password, confirmPassword }, ctx) => {
-    if (!isEdit || (isEdit && password !== '')) {
-      if (password === '') {
+    if (!isEdit || (isEdit && password !== "")) {
+      if (password === "") {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
-          message: 'Password is required.',
-          path: ['password'],
-        })
+          message: "Password is required.",
+          path: ["password"],
+        });
       }
 
       if (password.length < 8) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
-          message: 'Password must be at least 8 characters long.',
-          path: ['password'],
-        })
+          message: "Password must be at least 8 characters long.",
+          path: ["password"],
+        });
       }
 
       if (!password.match(/[a-z]/)) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
-          message: 'Password must contain at least one lowercase letter.',
-          path: ['password'],
-        })
+          message: "Password must contain at least one lowercase letter.",
+          path: ["password"],
+        });
       }
 
       if (!password.match(/\d/)) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
-          message: 'Password must contain at least one number.',
-          path: ['password'],
-        })
+          message: "Password must contain at least one number.",
+          path: ["password"],
+        });
       }
 
       if (password !== confirmPassword) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: "Passwords don't match.",
-          path: ['confirmPassword'],
-        })
+          path: ["confirmPassword"],
+        });
       }
     }
-  })
-type UserForm = z.infer<typeof formSchema>
+  });
+type UserForm = z.infer<typeof formSchema>;
 
 interface Props {
-  currentRow?: User
-  open: boolean
-  onOpenChange: (open: boolean) => void
+  currentRow?: User;
+  open: boolean;
+  onOpenChange: () => void;
+  mode?: "add" | "edit" | "view";
 }
 
-export function UsersActionModal({ currentRow, open, onOpenChange }: Props) {
-  const isEdit = !!currentRow
+export function UsersActionModal({
+  currentRow,
+  open,
+  onOpenChange,
+  mode,
+}: Props) {
+  const isEdit = mode === "edit";
+  const isView = mode === "view";
+  const isAdd = mode === "add";
+
   const form = useForm<UserForm>({
     resolver: zodResolver(formSchema),
-    defaultValues: isEdit
+    defaultValues: currentRow
       ? {
           ...currentRow,
-          password: '',
-          confirmPassword: '',
-          isEdit,
+          password: "",
+          confirmPassword: "",
+          isEdit: isEdit,
         }
       : {
-          firstName: '',
-          lastName: '',
-          username: '',
-          email: '',
-          role: '',
-          phoneNumber: '',
-          password: '',
-          confirmPassword: '',
-          isEdit,
+          firstName: "",
+          lastName: "",
+          username: "",
+          email: "",
+          role: "",
+          phoneNumber: "",
+          password: "",
+          confirmPassword: "",
+          isEdit: isEdit,
         },
-  })
+  });
 
   const onSubmit = (values: UserForm) => {
-    form.reset()
-    showSubmittedData(values)
-    onOpenChange(false)
-  }
+    form.reset();
+    showSubmittedData(values);
+    onOpenChange();
+  };
 
-  const isPasswordTouched = !!form.formState.dirtyFields.password
+  const isPasswordTouched = !!form.formState.dirtyFields.password;
+  const statusColor = currentRow ? callTypes.get(currentRow.status) : undefined;
 
   return (
     <Dialog
       open={open}
       onOpenChange={(state) => {
-        form.reset()
-        onOpenChange(state)
+        form.reset();
+        onOpenChange();
       }}
     >
-      <DialogContent className='sm:max-w-lg'>
-        <DialogHeader className='text-left'>
-          <DialogTitle>{isEdit ? 'Edit User' : 'Add New User'}</DialogTitle>
-          <DialogDescription>
-            {isEdit ? 'Update the user here. ' : 'Create new user here. '}
-            Click save when you&apos;re done.
-          </DialogDescription>
+      <DialogContent className="sm:max-w-lg">
+        <DialogHeader className="text-left ">
+          <DialogTitle className="flex items-center gap-2">
+            {isEdit && (
+              <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                <IconUserEdit className="size-5" />
+              </div>
+            )}
+            {isView && (
+              <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                <IconUserSearch className="size-5" />
+              </div>
+            )}
+            {!isEdit && !isView && (
+              <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                <IconUserPlus className="size-5" />
+              </div>
+            )}
+            {isEdit ? "Edit User" : isView ? "View User" : "Add New User"}
+          </DialogTitle>
         </DialogHeader>
-        <div className='-mr-4 h-[26.25rem] w-full overflow-y-auto py-1 pr-4'>
+        <div className="-mr-4 h-[26.25rem] w-full overflow-y-auto py-1 pr-4">
           <Form {...form}>
             <form
-              id='user-form'
+              id="user-form"
               onSubmit={form.handleSubmit(onSubmit)}
-              className='space-y-4 p-0.5'
+              className="space-y-4 p-0.5"
             >
               <FormField
                 control={form.control}
-                name='firstName'
+                name="firstName"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
+                    <FormLabel className="col-span-2 text-right">
                       First Name
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='John'
-                        className='col-span-4'
-                        autoComplete='off'
+                        placeholder="John"
+                        className="col-span-4"
+                        autoComplete="off"
+                        disabled={isView}
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='lastName'
+                name="lastName"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
+                    <FormLabel className="col-span-2 text-right">
                       Last Name
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='Doe'
-                        className='col-span-4'
-                        autoComplete='off'
+                        placeholder="Doe"
+                        className="col-span-4"
+                        autoComplete="off"
+                        disabled={isView}
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='username'
+                name="username"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
+                    <FormLabel className="col-span-2 text-right">
                       Username
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='john_doe'
-                        className='col-span-4'
+                        placeholder="john_doe"
+                        className="col-span-4"
+                        disabled={isView}
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='email'
+                name="email"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
+                    <FormLabel className="col-span-2 text-right">
                       Email
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='john.doe@gmail.com'
-                        className='col-span-4'
+                        placeholder="john.doe@gmail.com"
+                        className="col-span-4"
+                        disabled={isView}
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='phoneNumber'
+                name="phoneNumber"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
+                    <FormLabel className="col-span-2 text-right">
                       Phone Number
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='+123456789'
-                        className='col-span-4'
+                        placeholder="+123456789"
+                        className="col-span-4"
+                        disabled={isView}
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='role'
+                name="role"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
+                    <FormLabel className="col-span-2 text-right">
                       Role
                     </FormLabel>
                     <SelectDropdown
                       defaultValue={field.value}
                       onValueChange={field.onChange}
-                      placeholder='Select a role'
-                      className='col-span-4'
+                      placeholder="Select a role"
+                      disabled={isView}
+                      className="col-span-4"
                       items={userTypes.map(({ label, value }) => ({
                         label,
                         value,
                       }))}
                     />
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='password'
+                name="password"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
+                    <FormLabel className="col-span-2 text-right">
                       Password
                     </FormLabel>
                     <FormControl>
                       <PasswordInput
-                        placeholder='e.g., S3cur3P@ssw0rd'
-                        className='col-span-4'
+                        placeholder="e.g., S3cur3P@ssw0rd"
+                        className="col-span-4"
+                        disabled={isView || !isPasswordTouched}
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='confirmPassword'
+                name="confirmPassword"
                 render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
-                    <FormLabel className='col-span-2 text-right'>
+                  <FormItem className="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
+                    <FormLabel className="col-span-2 text-right">
                       Confirm Password
                     </FormLabel>
                     <FormControl>
                       <PasswordInput
-                        disabled={!isPasswordTouched}
-                        placeholder='e.g., S3cur3P@ssw0rd'
-                        className='col-span-4'
+                        disabled={isView || !isPasswordTouched}
+                        placeholder="e.g., S3cur3P@ssw0rd"
+                        className="col-span-4"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
+                    <FormMessage className="col-span-4 col-start-3" />
                   </FormItem>
                 )}
               />
             </form>
+            {isView && currentRow && (
+              <div className="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1 mt-4">
+                <label className="text-sm font-medium text-muted-foreground col-span-2">
+                  Status
+                </label>
+                <div className="col-span-4 mt-1">
+                  <Badge
+                    variant="outline"
+                    className={cn("capitalize", statusColor)}
+                  >
+                    {currentRow.status}
+                  </Badge>
+                </div>
+              </div>
+            )}
           </Form>
         </div>
         <DialogFooter>
-          <Button type='submit' form='user-form'>
-            Save changes
+          <Button variant="outline" type="button" onClick={onOpenChange}>
+            Cancel
           </Button>
+          {!isView && (
+            <Button type="submit" form="user-form">
+              Save changes
+            </Button>
+          )}
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

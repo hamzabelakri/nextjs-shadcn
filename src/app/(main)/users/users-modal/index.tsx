@@ -3,7 +3,6 @@
 import { useUsers } from '../context/users-context'
 import { UsersActionModal } from './users-action-modal'
 import { UsersDeleteModal } from './users-delete-modal'
-import { UsersInviteModal } from './users-invite-modal'
 import { UsersViewModal } from './users-view-modal'
 
 
@@ -15,17 +14,14 @@ export function UsersDialogs() {
         key='user-add'
         open={open === 'add'}
         onOpenChange={() => setOpen('add')}
+        mode="add"
       />
 
-      <UsersInviteModal
-        key='user-invite'
-        open={open === 'invite'}
-        onOpenChange={() => setOpen('invite')}
-      />
+
 
       {currentRow && (
         <>
-          <UsersViewModal
+          <UsersActionModal
             key={`user-view-${currentRow.id}`}
             open={open === 'view'}
             onOpenChange={() => {
@@ -35,6 +31,7 @@ export function UsersDialogs() {
               }, 500)
             }}
             currentRow={currentRow}
+            mode="view"
           />
 
           <UsersActionModal
@@ -47,6 +44,7 @@ export function UsersDialogs() {
               }, 500)
             }}
             currentRow={currentRow}
+            mode="edit"
           />
 
           <UsersDeleteModal

@@ -3,7 +3,6 @@
 import { useRoles } from '../context/roles-context'
 import { RolesActionModal } from './roles-action-modal'
 import { RolesDeleteModal } from './roles-delete-modal'
-import { RolesViewModal } from './roles-view-modal'
 export function RolesModals() {
   const { openRole, setOpenRole, currentRow, setCurrentRow } = useRoles()
   return (
@@ -12,11 +11,12 @@ export function RolesModals() {
         key='role-add'
         open={openRole === 'add'}
         onOpenChange={() => setOpenRole('add')}
+        mode="add"
       />
 
       {currentRow && (
         <>
-          <RolesViewModal
+          <RolesActionModal
             key={`role-view-${currentRow.id}`}
             open={openRole === 'view'}
             onOpenChange={() => {
@@ -26,6 +26,7 @@ export function RolesModals() {
               }, 500)
             }}
             currentRow={currentRow}
+             mode="view"
           />
 
           <RolesActionModal
@@ -38,6 +39,8 @@ export function RolesModals() {
               }, 500)
             }}
             currentRow={currentRow}
+            mode="edit"
+
           />
 
           <RolesDeleteModal

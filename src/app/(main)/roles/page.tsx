@@ -18,19 +18,13 @@ export default function Roles() {
 
   return (
     <>
-     
       <Main>
         <div className="mb-2 flex flex-wrap items-center space-x-2">
-         
           <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-          <IconShieldCog className="size-5" />
-        </div>
-         
-          
-            <h2 className="text-2xl font-bold tracking-tight">
-              Role Management
-            </h2>
-          
+            <IconShieldCog className="size-5" />
+          </div>
+
+          <h2 className="text-2xl font-bold tracking-tight">Role Management</h2>
         </div>
         <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-y-0 lg:space-x-12">
           <DataTable
