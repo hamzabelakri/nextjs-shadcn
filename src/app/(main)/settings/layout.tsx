@@ -4,7 +4,7 @@ import {
   IconPalette,
   IconSettings,
   IconTool,
-  IconUser,
+  IconUserCog,
 } from '@tabler/icons-react'
 import { Separator } from '@/components/ui/separator'
 import { Header } from '@/components/layout/header'
@@ -50,7 +50,7 @@ export default function SettingsLayout({
 const sidebarNavItems = [
   {
     title: 'Profile',
-    icon: <IconUser size={18} />,
+    icon: <IconUserCog size={18} />,
     href: '/settings/profile',
   },
   {

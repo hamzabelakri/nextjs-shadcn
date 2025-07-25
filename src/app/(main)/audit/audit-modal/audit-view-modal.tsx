@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { AuditLog } from '../data/schema'
 import { format } from 'date-fns'
+import { IconClipboardList } from '@tabler/icons-react'
 
 interface AuditLogViewDialogProps {
   currentRow: AuditLog 
@@ -67,6 +68,10 @@ export function AuditViewDialog({
       <DialogContent className='max-w-2xl'>
         <DialogHeader>
           <DialogTitle className='flex items-center gap-2'>
+             <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                <IconClipboardList className="size-5" />
+              </div>
+            
             Audit Log Details
             <Badge className={getActionColor(currentRow.action)}>
               {currentRow.action}
