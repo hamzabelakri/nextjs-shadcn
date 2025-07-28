@@ -117,7 +117,7 @@ export const columns: ColumnDef<AuditLog>[] = [
   {
     id: "actions",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Actions" />
+      <DataTableColumnHeader column={column} title="Actions" className="flex justify-end mr-4"/>
     ),
     cell: ({ row }) => {
       const { setOpenAudit, setCurrentRow } = useAudit();
@@ -125,6 +125,7 @@ export const columns: ColumnDef<AuditLog>[] = [
       return (
         <DataTableRowActions
           row={row}
+          className="justify-end mr-4"
           onView={(data) => {
             setCurrentRow(data);
             setOpenAudit("view");

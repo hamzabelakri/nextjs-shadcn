@@ -93,7 +93,7 @@ export const columns: ColumnDef<Role>[] = [
   {
     id: 'actions',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Actions' />
+      <DataTableColumnHeader column={column} title='Actions' className="flex justify-end mr-4"/>
     ),
     cell: ({ row }) => {
   const { setOpenRole, setCurrentRow } = useRoles()
@@ -101,6 +101,7 @@ export const columns: ColumnDef<Role>[] = [
           return (
             <DataTableRowActions
               row={row}
+              className="justify-end mr-4"
               onView={(data) => {
                 setCurrentRow(data);
                 setOpenRole("view");

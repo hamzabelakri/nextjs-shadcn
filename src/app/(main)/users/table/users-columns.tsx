@@ -106,7 +106,7 @@ export const columns: ColumnDef<User>[] = [
   {
     id: "actions",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Actions" />
+      <DataTableColumnHeader column={column} title="Actions" className="flex justify-end mr-4"/>
     ),
     cell: ({ row }) => {
       const { setOpen, setCurrentRow } = useUsers();
@@ -114,6 +114,7 @@ export const columns: ColumnDef<User>[] = [
       return (
         <DataTableRowActions
           row={row}
+          className="justify-end mr-4"
           onView={(data) => {
             setCurrentRow(data);
             setOpen("view");

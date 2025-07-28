@@ -3,12 +3,14 @@
 import { Row } from "@tanstack/react-table";
 import { IconEdit, IconTrash, IconEye } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
   onView?: (data: TData) => void;
   onEdit?: (data: TData) => void;
   onDelete?: (data: TData) => void;
+   className?: string;
 }
 
 export function DataTableRowActions<TData>({
@@ -16,9 +18,10 @@ export function DataTableRowActions<TData>({
   onView,
   onEdit,
   onDelete,
+  className
 }: DataTableRowActionsProps<TData>) {
   return (
-    <div className="flex items-center gap-2">
+    <div className={cn("flex items-center gap-2", className)}>
       {onView && (
         <Button
           variant="outline"
