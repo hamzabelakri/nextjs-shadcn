@@ -1,0 +1,114 @@
+import {
+  IconBarrierBlock,
+  IconBrowserCheck,
+  IconBug,
+  IconChecklist,
+  IconClipboardList,
+  IconError404,
+  IconHelp,
+  IconLayoutDashboard,
+  IconLock,
+  IconLockAccess,
+  IconMessages,
+  IconNotification,
+  IconPackages,
+  IconPalette,
+  IconServerOff,
+  IconSettings,
+  IconTool,
+  IconUserCog,
+  IconUserOff,
+  IconUsers,
+  IconShieldCog
+} from '@tabler/icons-react'
+import { AudioWaveform, Command, GalleryVerticalEnd } from 'lucide-react'
+import { ClerkLogo } from '@/assets/clerk-logo'
+import { type SidebarData } from '../types'
+
+export const sidebarData: SidebarData = {
+  user: {
+    name: 'satnaing',
+    email: 'satnaingdev@gmail.com',
+    avatar: '/avatars/shadcn.jpg',
+  },
+  teams: [
+    {
+      name: 'Shadcn Admin',
+      logo: Command,
+      plan: 'Vite + ShadcnUI',
+    },
+    {
+      name: 'Acme Inc',
+      logo: GalleryVerticalEnd,
+      plan: 'Enterprise',
+    },
+    {
+      name: 'Acme Corp.',
+      logo: AudioWaveform,
+      plan: 'Startup',
+    },
+  ],
+  navGroups: [
+    {
+      title: 'General',
+      items: [
+        {
+          title: 'Dashboard',
+          url: '/dashboard',
+          icon: IconLayoutDashboard,
+        },
+        {
+          title: 'Users',
+          url: '/users',
+          icon: IconUsers,
+        },
+        {
+          title: 'Roles',
+          url: '/roles',
+          icon: IconShieldCog,
+        },
+      ],
+    },
+    {
+      title: 'Other',
+      items: [
+        {
+          title: 'Audit',
+          url: '/audit',
+          icon: IconClipboardList,
+        },
+        {
+          title: 'Settings',
+          icon: IconSettings,
+          items: [
+            {
+              title: 'Profile',
+              url: '/settings/profile',
+              icon: IconUserCog,
+            },
+            {
+              title: 'Account',
+              url: '/settings/account',
+              icon: IconTool,
+            },
+            {
+              title: 'Appearance',
+              url: '/settings/appearance',
+              icon: IconPalette,
+            },
+            {
+              title: 'Notifications',
+              url: '/settings/notifications',
+              icon: IconNotification,
+            },
+            {
+              title: 'Display',
+              url: '/settings/display',
+              icon: IconBrowserCheck,
+            },
+          ],
+        },
+      ],
+    },
+  ],
+}
