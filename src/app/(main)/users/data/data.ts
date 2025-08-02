@@ -43,6 +43,25 @@ export const userTypes = [
   },
 ] as const;
 
+export const userStatusFilters = [
+  {
+    label: "Active",
+    value: "active",
+  },
+  {
+    label: "Inactive", 
+    value: "inactive",
+  },
+  {
+    label: "Invited",
+    value: "invited",
+  },
+  {
+    label: "Suspended",
+    value: "suspended",
+  },
+];
+
 export const useUserToolbarProps = () => {
 const setOpen = useUsersStore((state) => state.setOpen)
 
@@ -53,5 +72,12 @@ const setOpen = useUsersStore((state) => state.setOpen)
     filerButtonLabel: "Filter",
     buttonIcon: IconUserPlus,
     onAddClick: () => setOpen("add"),
+    filters: [
+      {
+        key: "status",
+        title: "Status",
+        options: userStatusFilters,
+      },
+    ],
   };
 };

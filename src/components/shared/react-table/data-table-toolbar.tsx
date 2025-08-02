@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DataTableViewOptions } from "./data-table-view-options";
 import { IconFilter, IconUpload, IconUserPlus } from "@tabler/icons-react";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+} from "@/components/ui/dropdown-menu";
+import { DataTableFacetedFilter } from "./data-table-faceted-filter";
+import { priorities, statuses } from "@/app/(main)/tasks/data/data";
 
 interface ToolbarProps {
   filterPlaceholder?: string;
@@ -14,6 +21,15 @@ interface ToolbarProps {
     size?: number;
   }>;
   onAddClick?: () => void;
+  filters?: {
+    key: string;
+    title: string;
+    options: {
+      label: string;
+      value: string;
+      icon?: React.ComponentType<{ className?: string }>;
+    }[];
+  }[];
 }
 
 interface DataTableToolbarProps<TData> {
@@ -37,16 +53,6 @@ export function DataTableToolbar<TData>({
           className="h-8 w-[150px] lg:w-[250px]"
         />
 
-        {isFiltered && (
-          <Button
-            variant="ghost"
-            onClick={() => table.resetColumnFilters()}
-            className="h-8 px-2 lg:px-3"
-          >
-            Reset
-            <Cross2Icon className="ml-2 h-4 w-4" />
-          </Button>
-        )}
         <DataTableViewOptions table={table} />
       </div>
       <div className="flex gap-2">
@@ -60,14 +66,36 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
 
-        {toolbarProps?.filerButtonLabel && (
-          <Button
-            variant="outline"
-            size="sm"
-            className="ml-auto hidden h-8 lg:flex"
-          >
-            <span>Filter</span> <IconFilter size={18} />
-          </Button>
+        {toolbarProps?.filerButtonLabel && toolbarProps?.filters && (
+          <DropdownMenu modal={false}>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="ml-auto hidden h-8 lg:flex"
+              >
+                <IconFilter className="mr-2 h-4 w-4" />
+                {toolbarProps.filerButtonLabel}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-[220px]  p-2">
+              <div className="flex flex-wrap gap-2">
+                {toolbarProps?.filters.map((filter) => {
+                  const column = table.getColumn(filter.key);
+                  if (!column) return null;
+
+                  return (
+                    <DataTableFacetedFilter
+                      key={filter.key}
+                      column={column}
+                      title={filter.title}
+                      options={filter.options}
+                    />
+                  );
+                })}
+              </div>
+            </DropdownMenuContent>
+          </DropdownMenu>
         )}
         {toolbarProps?.buttonLabel && (
           <Button
