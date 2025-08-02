@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DataTableViewOptions } from "./data-table-view-options";
 import { IconFilter, IconUpload, IconUserPlus } from "@tabler/icons-react";
-import { useUsers } from "@/app/(main)/users/context/users-context";
 
 interface ToolbarProps {
   filterPlaceholder?: string;

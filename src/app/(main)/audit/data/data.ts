@@ -13,7 +13,6 @@ import {
   IconDeviceDesktop,
   IconUserPlus,
 } from '@tabler/icons-react'
-import { useAudit } from '../context/audit-context';
 
 export const auditActionTypes = new Map([
   ['create', { color: 'bg-teal-100/30 text-teal-900 dark:text-teal-200 border-teal-200', icon: IconPlus }],

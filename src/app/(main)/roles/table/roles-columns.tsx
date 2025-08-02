@@ -8,6 +8,7 @@ import { roleStatuses } from '../data/data'
 import { Role } from '../data/schema'
 import { useRoles } from '../context/roles-context'
 import { DataTableColumnHeader, DataTableRowActions } from '@/components/shared/react-table'
+import { useRolesStore } from '@/store/roles-store'
 
 export const columns: ColumnDef<Role>[] = [
    {
@@ -96,7 +97,7 @@ export const columns: ColumnDef<Role>[] = [
       <DataTableColumnHeader column={column} title='Actions' className="flex justify-end mr-4"/>
     ),
     cell: ({ row }) => {
-  const { setOpenRole, setCurrentRow } = useRoles()
+  const { setOpenRole, setCurrentRow } = useRolesStore()
     
           return (
             <DataTableRowActions

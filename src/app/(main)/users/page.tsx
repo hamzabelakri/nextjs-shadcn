@@ -2,7 +2,6 @@
 
 import { Main } from "@/components/layout/main";
 
-import UsersProvider, { useUsers } from "./context/users-context";
 import { userListSchema } from "./data/schema";
 import { users } from "./data/users";
 import { useUserToolbarProps } from "./data/data";

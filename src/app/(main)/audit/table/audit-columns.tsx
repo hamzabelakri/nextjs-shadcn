@@ -6,8 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import LongText from "@/components/long-text";
 import { auditActionTypes, auditEntityTypes } from "../data/data";
 import { AuditLog } from "../data/schema";
-import { useAudit } from "../context/audit-context";
 import { DataTableColumnHeader, DataTableRowActions } from "@/components/shared/react-table";
+import { useAuditStore } from "@/store/audit-store";
 
 export const columns: ColumnDef<AuditLog>[] = [
 {
@@ -120,7 +120,7 @@ export const columns: ColumnDef<AuditLog>[] = [
       <DataTableColumnHeader column={column} title="Actions" className="flex justify-end mr-4"/>
     ),
     cell: ({ row }) => {
-      const { setOpenAudit, setCurrentRow } = useAudit();
+      const { setOpenAudit, setCurrentRow } = useAuditStore();
 
       return (
         <DataTableRowActions
@@ -130,7 +130,7 @@ export const columns: ColumnDef<AuditLog>[] = [
             setCurrentRow(data);
             setOpenAudit("view");
           }}
-          onEdit={(data) => {
+          onCompare={(data) => {
             setCurrentRow(data);
             setOpenAudit("compare");
           }}

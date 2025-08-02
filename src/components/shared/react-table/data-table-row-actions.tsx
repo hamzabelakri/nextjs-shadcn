@@ -1,7 +1,12 @@
 "use client";
 
 import { Row } from "@tanstack/react-table";
-import { IconEdit, IconTrash, IconEye } from "@tabler/icons-react";
+import {
+  IconEdit,
+  IconTrash,
+  IconEye,
+  IconGitCompare,
+} from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -9,8 +14,9 @@ interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
   onView?: (data: TData) => void;
   onEdit?: (data: TData) => void;
+  onCompare?: (data: TData) => void;
   onDelete?: (data: TData) => void;
-   className?: string;
+  className?: string;
 }
 
 export function DataTableRowActions<TData>({
@@ -18,7 +24,8 @@ export function DataTableRowActions<TData>({
   onView,
   onEdit,
   onDelete,
-  className
+  onCompare,
+  className,
 }: DataTableRowActionsProps<TData>) {
   return (
     <div className={cn("flex items-center gap-2", className)}>
@@ -41,6 +48,17 @@ export function DataTableRowActions<TData>({
           className="h-8 w-8 p-0 text-green-500 hover:text-green-600 hover:border-green-300"
         >
           <IconEdit size={16} />
+        </Button>
+      )}
+
+      {onCompare && (
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => onCompare?.(row.original)}
+          className="h-8 w-8 p-0 text-green-500 hover:text-green-600 hover:border-green-300"
+        >
+          <IconGitCompare size={16} />
         </Button>
       )}
 

@@ -8,7 +8,8 @@ import LongText from "@/components/long-text";
 import { callTypes, userTypes } from "../data/data";
 import { User } from "../data/schema";
 import { DataTableColumnHeader, DataTableRowActions } from "@/components/shared/react-table";
-import { useUsers } from "../context/users-context";
+import { useUsersStore } from "@/store/users-store";
+
 
 export const columns: ColumnDef<User>[] = [
   {
@@ -109,7 +110,7 @@ export const columns: ColumnDef<User>[] = [
       <DataTableColumnHeader column={column} title="Actions" className="flex justify-end mr-4"/>
     ),
     cell: ({ row }) => {
-      const { setOpen, setCurrentRow } = useUsers();
+      const { setOpen, setCurrentRow } = useUsersStore();
 
       return (
         <DataTableRowActions

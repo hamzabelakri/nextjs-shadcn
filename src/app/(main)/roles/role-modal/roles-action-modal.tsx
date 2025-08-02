@@ -60,6 +60,7 @@ interface RolesActionModalProps {
   open: boolean;
   onOpenChange: () => void;
   mode?: "add" | "edit" | "view";
+  switchToEdit?: () => void;
 }
 
 export function RolesActionModal({
@@ -67,6 +68,7 @@ export function RolesActionModal({
   open,
   onOpenChange,
   mode,
+  switchToEdit,
 }: RolesActionModalProps) {
   const isEdit = mode === "edit";
   const isView = mode === "view";
@@ -155,36 +157,32 @@ export function RolesActionModal({
             {isEdit ? "Edit Role" : isView ? "View Role" : "Add New Role"}
           </DialogTitle>
         </DialogHeader>
-       
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            
-             <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem className="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
-                    <FormLabel className="col-span-2 text-right">
-                      Role Name
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter role name"
-                        className="col-span-4"
-                        autoComplete="off"
-                        disabled={isView}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className="col-span-4 col-start-3" />
-                  </FormItem>
-                )}
-              />
+          <form 
+          onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem className="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
+                  <FormLabel className="col-span-2 text-right">
+                    Role Name
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Enter role name"
+                      className="col-span-4"
+                      autoComplete="off"
+                      disabled={isView}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className="col-span-4 col-start-3" />
+                </FormItem>
+              )}
+            />
 
-           
-
-            
             <FormField
               control={form.control}
               name="permissions"
@@ -260,7 +258,7 @@ export function RolesActionModal({
                       </p>
                       <div className="flex flex-wrap gap-1">
                         {watchedPermissions.map((permission) => {
-                          const action = permission.split(".")[1]; 
+                          const action = permission.split(".")[1];
 
                           const colorClass = permissionColorClass[action];
 
@@ -286,15 +284,21 @@ export function RolesActionModal({
               <Button variant="outline" type="button" onClick={onOpenChange}>
                 Cancel
               </Button>
-              {!isView && (
-                <Button type="submit">
-                  {isEdit ? "Update Role" : "Create Role"}
+              {isView ? (
+                <Button
+                form="role-form"
+                  onClick={() => {
+                    if (switchToEdit) switchToEdit();
+                  }}
+                >
+                  Edit
                 </Button>
+              ) : (
+                <Button type="submit">Submit</Button>
               )}
             </DialogFooter>
           </form>
         </Form>
-        
       </DialogContent>
     </Dialog>
   );

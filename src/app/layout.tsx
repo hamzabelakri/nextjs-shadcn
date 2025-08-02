@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" >
       <body className={`${inter.variable} ${mono.variable} antialiased`}>
         <ThemeProvider defaultTheme="light" storageKey="ui-theme">
           <FontProvider>{children} </FontProvider>

@@ -9,11 +9,8 @@ import { Header } from "@/components/layout/header";
 import { Search } from "@/components/search";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { ProfileDropdown } from "@/components/profile-dropdown";
-import { Main } from "@/components/layout/main";
 import { TopNav } from "@/components/layout/top-nav";
-import UsersProvider from "./users/context/users-context";
-import RolesProvider from "./roles/context/roles-context";
-import AuditProvider from "./audit/context/audit-context";
+
 
 interface Props {
   children?: React.ReactNode;
@@ -23,9 +20,7 @@ export default function MainLayout({ children }: Props) {
   return (
     <SearchProvider>
       <SidebarProvider>
-        <UsersProvider>
-          <RolesProvider>
-            <AuditProvider>
+      
             <SkipToMain />
             <AppSidebar />
             <div
@@ -51,9 +46,7 @@ export default function MainLayout({ children }: Props) {
 
               {children}
             </div>
-            </AuditProvider>
-          </RolesProvider>
-        </UsersProvider>
+          
       </SidebarProvider>
     </SearchProvider>
   );

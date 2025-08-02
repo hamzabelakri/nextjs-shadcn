@@ -6,7 +6,8 @@ import {
   IconUserShield,
 } from "@tabler/icons-react";
 import { UserStatus } from "./schema";
-import { useUsers } from "../context/users-context";
+import { useUsersStore } from "@/store/users-store";
+
 
 export const callTypes = new Map<UserStatus, string>([
   ["active", "bg-teal-100/30 text-teal-900 dark:text-teal-200 border-teal-200"],
@@ -43,7 +44,7 @@ export const userTypes = [
 ] as const;
 
 export const useUserToolbarProps = () => {
-  const { setOpen } = useUsers();
+const setOpen = useUsersStore((state) => state.setOpen)
 
   return {
     filterPlaceholder: "Filter users...",

@@ -7,7 +7,7 @@ import {
   IconEye,
   IconUserPlus
 } from '@tabler/icons-react'
-import { useRoles } from '../context/roles-context'
+import { useRolesStore } from '@/store/roles-store'
 
 export const roleStatuses = new Map([
   ['active', 'bg-teal-100/30 text-teal-900 dark:text-teal-200 border-teal-200'],
@@ -89,7 +89,7 @@ export const permissionColorClass: Record<string, string> = {
 
 
 export const useRoleToolbarProps = () => {
-  const { setOpenRole } = useRoles();
+  const setOpenRole = useRolesStore((state) => state.setOpenRole)
   
   return {
     filterPlaceholder: "Filter roles...",

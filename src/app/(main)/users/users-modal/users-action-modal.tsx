@@ -28,7 +28,11 @@ import { userTypes, callTypes } from "../data/data";
 import { User } from "../data/schema";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { IconUserSearch, IconUserEdit, IconUserPlus } from "@tabler/icons-react";
+import {
+  IconUserSearch,
+  IconUserEdit,
+  IconUserPlus,
+} from "@tabler/icons-react";
 
 const formSchema = z
   .object({
@@ -95,6 +99,7 @@ interface Props {
   open: boolean;
   onOpenChange: () => void;
   mode?: "add" | "edit" | "view";
+  switchToEdit?: () => void;
 }
 
 export function UsersActionModal({
@@ -102,6 +107,7 @@ export function UsersActionModal({
   open,
   onOpenChange,
   mode,
+  switchToEdit,
 }: Props) {
   const isEdit = mode === "edit";
   const isView = mode === "view";
@@ -361,9 +367,18 @@ export function UsersActionModal({
           <Button variant="outline" type="button" onClick={onOpenChange}>
             Cancel
           </Button>
-          {!isView && (
+          {isView ? (
+            <Button
+              form="user-form"
+              onClick={() => {
+                if (switchToEdit) switchToEdit();
+              }}
+            >
+              Edit
+            </Button>
+          ) : (
             <Button type="submit" form="user-form">
-              Save changes
+              Submit
             </Button>
           )}
         </DialogFooter>
