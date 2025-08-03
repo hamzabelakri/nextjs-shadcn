@@ -5,14 +5,15 @@ import {
   IconSettings,
   IconTool,
   IconUserCog,
-} from '@tabler/icons-react'
-import { Separator } from '@/components/ui/separator'
-import { Header } from '@/components/layout/header'
-import { Main } from '@/components/layout/main'
-import { ProfileDropdown } from '@/components/profile-dropdown'
-import { Search } from '@/components/search'
-import { ThemeSwitch } from '@/components/theme-switch'
-import SidebarNav from './components/sidebar-nav'
+} from "@tabler/icons-react";
+import { Separator } from "@/components/ui/separator";
+import { Header } from "@/components/layout/header";
+import { Main } from "@/components/layout/main";
+import { ProfileDropdown } from "@/components/profile-dropdown";
+import { Search } from "@/components/search";
+import { ThemeSwitch } from "@/components/theme-switch";
+import SidebarNav from "./components/sidebar-nav";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function SettingsLayout({
   children,
@@ -22,53 +23,48 @@ export default function SettingsLayout({
   return (
     <>
       {/* ===== Top Heading ===== */}
-     
+      <Main>
+        <div className="mb-2 flex flex-wrap items-center space-x-2">
+          <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+            <IconSettings className="size-5" />
+          </div>
 
-      <Main fixed>
-        <div className='mb-2 flex flex-wrap items-center space-x-2'>
-
-          <IconSettings/>
-          <h1 className='text-2xl font-bold tracking-tight md:text-3xl'>
-            Settings
-          </h1>
-         
+          <h2 className="text-2xl font-bold tracking-tight">Settings</h2>
         </div>
-        <Separator className='my-4 lg:my-6' />
-        <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-y-0 lg:space-x-12">
-          
-        
-           {children}
-        
+        <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-y-0 lg:space-x-12 mt-4">
+          <Card>
+            <CardContent>{children}</CardContent>
+          </Card>
         </div>
       </Main>
     </>
-  )
+  );
 }
 
 const sidebarNavItems = [
   {
-    title: 'Profile',
+    title: "Profile",
     icon: <IconUserCog size={18} />,
-    href: '/settings/profile',
+    href: "/settings/profile",
   },
   {
-    title: 'Account',
+    title: "Account",
     icon: <IconTool size={18} />,
-    href: '/settings/account',
+    href: "/settings/account",
   },
   {
-    title: 'Appearance',
+    title: "Appearance",
     icon: <IconPalette size={18} />,
-    href: '/settings/appearance',
+    href: "/settings/appearance",
   },
   {
-    title: 'Notifications',
+    title: "Notifications",
     icon: <IconNotification size={18} />,
-    href: '/settings/notifications',
+    href: "/settings/notifications",
   },
   {
-    title: 'Display',
+    title: "Display",
     icon: <IconBrowserCheck size={18} />,
-    href: '/settings/display',
+    href: "/settings/display",
   },
-]
+];

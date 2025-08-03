@@ -2,7 +2,6 @@
 
 import { Main } from "@/components/layout/main";
 
-import RolesProvider from "./context/roles-context";
 import { roleListSchema } from "./data/schema";
 import { roles } from "./data/roles";
 import { useRoleToolbarProps } from "./data/data";
@@ -11,7 +10,7 @@ import { IconShieldCog, IconUserCog } from "@tabler/icons-react";
 import { columns } from "./table/roles-columns";
 import { RolesModals } from "./role-modal";
 
-export default function Roles() {
+export default function RolesPage() {
   // Parse roles list
   const roleList = roleListSchema.parse(roles);
   const toolbarProps = useRoleToolbarProps();

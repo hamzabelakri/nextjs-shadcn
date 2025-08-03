@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+"use client"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Main } from "@/components/layout/main";
@@ -8,8 +8,11 @@ import { SectionCards } from "./components/section-cards";
 import { ChartBarMultiple } from "./components/chart-bar-multiple";
 import { ChartRadarLinesOnly } from "./components/chart-radar-lines";
 import { IconLayoutDashboard } from "@tabler/icons-react";
+import { useTranslation } from "react-i18next";
 
-export default function Dashboard() {
+export default function DashboardPage() {
+    const { t } = useTranslation();
+
   return (
     <Main>
       <div className="mb-2 flex items-center  space-x-2">
@@ -17,7 +20,7 @@ export default function Dashboard() {
           <IconLayoutDashboard className="size-5" />
         </div>
 
-        <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
+        <h1 className="text-2xl font-bold tracking-tight">{t('dashboard')}</h1>
       </div>
       <Tabs
         orientation="vertical"
