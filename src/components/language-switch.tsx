@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/language-context";
+import { useLanguageStore } from "@/store/language-store";
 
 const languages = [
   { code: "en", label: "English", flag: "/flags/united-states.svg" },
@@ -19,7 +20,7 @@ const languages = [
 ];
 
 export function LanguageSwitch() {
-  const { currentLanguage, changeLanguage } = useLanguage(); 
+  const { currentLanguage, changeLanguage } = useLanguageStore(); 
 
   return (
     <DropdownMenu modal={false}>

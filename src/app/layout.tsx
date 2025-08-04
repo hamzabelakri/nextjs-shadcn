@@ -3,7 +3,6 @@ import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { FontProvider } from "@/context/font-context";
 import { ThemeProvider } from "@/context/theme-context";
-import { LanguageProvider } from "@/context/language-context";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -29,9 +28,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${mono.variable} antialiased`}>
         <ThemeProvider defaultTheme="light" storageKey="ui-theme">
-          <LanguageProvider>
-            <FontProvider>{children} </FontProvider>
-          </LanguageProvider>
+          <FontProvider>{children} </FontProvider>
         </ThemeProvider>
       </body>
     </html>
