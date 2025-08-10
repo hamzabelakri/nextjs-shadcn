@@ -11,12 +11,6 @@ import AuthLayout from "../layout";
 import Link from "next/link";
 
 export default function SignIn2() {
-  // Add some stateful effects for enhanced UI/UX
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   return (
     <>

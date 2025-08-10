@@ -11,6 +11,7 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { ProfileDropdown } from "@/components/profile-dropdown";
 import { TopNav } from "@/components/layout/top-nav";
 import { LanguageSwitch } from "@/components/language-switch";
+import { AuthGuard } from "@/components/auth/auth-guard";
 
 interface Props {
   children?: React.ReactNode;
@@ -22,6 +23,7 @@ export default function MainLayout({ children }: Props) {
       <SidebarProvider>
         <SkipToMain />
         <AppSidebar />
+        <AuthGuard>
         <div
           id="content"
           className={cn(
@@ -34,6 +36,7 @@ export default function MainLayout({ children }: Props) {
             "has-[main.fixed-main]:group-data-[scroll-locked=1]/body:h-svh"
           )}
         >
+         
           <Header>
             <TopNav links={topNav} />
             <div className="ml-auto flex items-center space-x-4">
@@ -46,6 +49,7 @@ export default function MainLayout({ children }: Props) {
 
           {children}
         </div>
+         </AuthGuard>
       </SidebarProvider>
     </SearchProvider>
   );

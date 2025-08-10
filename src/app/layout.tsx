@@ -3,6 +3,8 @@ import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { FontProvider } from "@/context/font-context";
 import { ThemeProvider } from "@/context/theme-context";
+import QueryProvider from "@/providers/query-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -19,17 +21,16 @@ export const metadata: Metadata = {
   description: "Asteroidea Template",
 };
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
   return (
     <html lang="en">
       <body className={`${inter.variable} ${mono.variable} antialiased`}>
-        <ThemeProvider defaultTheme="light" storageKey="ui-theme">
-          <FontProvider>{children} </FontProvider>
-        </ThemeProvider>
+        <QueryProvider>
+          <ThemeProvider defaultTheme="light" storageKey="ui-theme">
+            <Toaster />
+            <FontProvider>{children} </FontProvider>
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );

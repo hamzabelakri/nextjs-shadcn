@@ -10,21 +10,22 @@ import { DataTable } from "@/components/shared/react-table";
 import { IconUsers } from "@tabler/icons-react";
 import { columns } from "./table/users-columns";
 import { UsersDialogs } from "./users-modal";
+import { useUsers } from "@/hooks/use-users";
 
 export default function UsersPage() {
+      const { data: userss, isLoading, isError, error } = useUsers();
+      console.log("**********",userss)
+
   const userList = userListSchema.parse(users);
   const toolbarProps = useUserToolbarProps();
   return (
-  <>
+    <>
       <Main>
         <div className="mb-2 flex flex-wrap items-center space-x-2">
-        
-
           <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-          <IconUsers className="size-5" />
-        </div>
-            <h2 className="text-2xl font-bold tracking-tight">User List</h2>
-         
+            <IconUsers className="size-5" />
+          </div>
+          <h2 className="text-2xl font-bold tracking-tight">User List</h2>
         </div>
         <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-y-0 lg:space-x-12">
           <DataTable
@@ -35,6 +36,6 @@ export default function UsersPage() {
         </div>
       </Main>
       <UsersDialogs />
-   </>
+    </>
   );
 }
