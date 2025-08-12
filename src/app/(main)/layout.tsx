@@ -39,7 +39,8 @@ export default function MainLayout({ children }: Props) {
          
           <Header>
             <TopNav links={topNav} />
-            <div className="ml-auto flex items-center space-x-4">
+            <div className="flex-1" /> {/* Spacer to push user actions to the end */}
+            <div className="flex items-center space-x-4 rtl:space-x-reverse">
               <Search />
               <LanguageSwitch />
               <ThemeSwitch />

@@ -18,17 +18,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/password-input";
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
-import { login } from "@/lib/api/auth";
-import { useAuthStore } from "@/store/auth-store";
+import { useLogin } from "@/hooks/use-auth";
 import { useTranslation } from "react-i18next";
 
 type UserAuthFormProps = HTMLAttributes<HTMLFormElement>;
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const { t } = useTranslation();
-  const setAuth = useAuthStore((state) => state.setAuth);
-  const router = useRouter();
+  
+  // Use the new login hook with error handling
+  const loginMutation = useLogin({
+    onError: (error) => {
+      console.error("Login error:", error.message);
+      // TODO: Add toast notification for error
+      // toast.error(error.message);
+    }
+  });
 
   const formSchema = z.object({
     email: z
@@ -54,21 +59,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues,
   });
-  const {
-    formState: { isSubmitting },
-  } = form;
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    try {
-      const auth = await login(data);
-      console.log("Login success:", auth);
-      setAuth(auth);
-      router.push("/dashboard");
 
-    } catch (error: any) {
-      console.error("Login failed:", error);
-      // Later: toast.error(error.response?.data?.message || "Login failed");
-    } finally {
-    }
+  const onSubmit = (data: z.infer<typeof formSchema>) => {
+    loginMutation.mutate(data);
   };
 
   return (
@@ -110,7 +103,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             </FormItem>
           )}
         />
-        <Button className="mt-2" disabled={isSubmitting}>
+        <Button className="mt-2" disabled={loginMutation.isPending}>
           {t('login')}
         </Button>
 
@@ -126,10 +119,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         </div>
 
         <div className="grid grid-cols-2 gap-2">
-          <Button variant="outline" type="button" disabled={isSubmitting}>
+          <Button variant="outline" type="button" disabled={loginMutation.isPending}>
             <IconBrandGithub className="h-4 w-4" /> {t('github')}
           </Button>
-          <Button variant="outline" type="button" disabled={isSubmitting}>
+          <Button variant="outline" type="button" disabled={loginMutation.isPending}>
             <IconBrandFacebook className="h-4 w-4" /> {t('facebook')}
           </Button>
         </div>

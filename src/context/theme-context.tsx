@@ -28,20 +28,21 @@ export function ThemeProvider({
   storageKey = 'ui-theme',
   ...props
 }: ThemeProviderProps) {
-/*   const [theme, _setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  ) */
-
-
   const [theme, _setTheme] = useState<Theme>(defaultTheme)
+  const [mounted, setMounted] = useState(false)
 
+  // Load theme from localStorage after component mounts
   useEffect(() => {
-  const storedTheme = localStorage.getItem(storageKey) as Theme
-  if (storedTheme) _setTheme(storedTheme)
+    setMounted(true)
+    const storedTheme = localStorage.getItem(storageKey) as Theme
+    if (storedTheme) {
+      _setTheme(storedTheme)
+    }
   }, [storageKey])
 
-
   useEffect(() => {
+    if (!mounted) return // Don't apply theme until component is mounted
+    
     const root = window.document.documentElement
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
@@ -63,7 +64,7 @@ export function ThemeProvider({
     mediaQuery.addEventListener('change', handleChange)
 
     return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [theme])
+  }, [theme, mounted])
 
   const setTheme = (theme: Theme) => {
     localStorage.setItem(storageKey, theme)
@@ -73,6 +74,15 @@ export function ThemeProvider({
   const value = {
     theme,
     setTheme,
+  }
+
+  // Prevent flash of wrong theme during SSR
+  if (!mounted) {
+    return (
+      <ThemeProviderContext.Provider {...props} value={value}>
+        {children}
+      </ThemeProviderContext.Provider>
+    )
   }
 
   return (

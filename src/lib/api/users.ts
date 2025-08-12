@@ -1,4 +1,3 @@
-import { toast } from "sonner";
 import axiosApi from "../axios";
 
 export interface Role {
@@ -11,7 +10,6 @@ export interface Role {
   created_at: string;
   updated_at: string;
 }
-
 
 export interface User {
   id: number;
@@ -26,9 +24,7 @@ export interface User {
   updated_at: string;
 }
 
-
-const USER_ENDPOINT = `/admin/users`;
-
+const USER_ENDPOINT = `/users`;
 
 export const getUsers = async (): Promise<User[]> => {
   const response = await axiosApi.get(USER_ENDPOINT);

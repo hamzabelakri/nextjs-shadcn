@@ -34,26 +34,26 @@ export function ThemeSwitch() {
           <span className='sr-only'>{t('toggle_theme')}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='end'>
-        <DropdownMenuItem onClick={() => setTheme('light')}>
+      <DropdownMenuContent align='end' className="rtl:text-right">
+        <DropdownMenuItem onClick={() => setTheme('light')} className="rtl:flex-row-reverse">
           {t('light')}{' '}
           <IconCheck
             size={14}
-            className={cn('ml-auto', theme !== 'light' && 'hidden')}
+            className={cn('ml-auto rtl:ml-0 rtl:mr-auto', theme !== 'light' && 'hidden')}
           />
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
+        <DropdownMenuItem onClick={() => setTheme('dark')} className="rtl:flex-row-reverse">
           {t('dark')}
           <IconCheck
             size={14}
-            className={cn('ml-auto', theme !== 'dark' && 'hidden')}
+            className={cn('ml-auto rtl:ml-0 rtl:mr-auto', theme !== 'dark' && 'hidden')}
           />
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
+        <DropdownMenuItem onClick={() => setTheme('system')} className="rtl:flex-row-reverse">
           {t('system')}
           <IconCheck
             size={14}
-            className={cn('ml-auto', theme !== 'system' && 'hidden')}
+            className={cn('ml-auto rtl:ml-0 rtl:mr-auto', theme !== 'system' && 'hidden')}
           />
         </DropdownMenuItem>
       </DropdownMenuContent>

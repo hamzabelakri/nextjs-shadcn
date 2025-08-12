@@ -1,19 +1,10 @@
 import { z } from 'zod'
 
-const userStatusSchema = z.union([
-  z.literal('active'),
-  z.literal('inactive'),
-  z.literal('invited'),
-  z.literal('suspended'),
-])
+// Allow any string for status - API can return various status values like "active", "inactive", etc.
+const userStatusSchema = z.string()
 export type UserStatus = z.infer<typeof userStatusSchema>
 
-const userRoleSchema = z.union([
-  z.literal('superadmin'),
-  z.literal('admin'),
-  z.literal('cashier'),
-  z.literal('manager'),
-])
+const userRoleSchema = z.string(); // Accept any role string from API
 
 const userSchema = z.object({
   id: z.string(),

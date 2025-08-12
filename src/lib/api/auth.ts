@@ -14,17 +14,10 @@ export interface LoginResponse {
   };
 }
 
-export const LOGIN_ENDPOINT = `/login`;
+export const LOGIN_ENDPOINT = `/auth/login`;
 
-export const login = async (login:LoginPayload): Promise<LoginResponse | undefined> => {
-  //console.log("login:", login); 
-
-  try {
-    const response = await axiosApi.post(LOGIN_ENDPOINT, login);
-    return response.data;
-  } catch (error: any) {
-    console.error("Login Failed:", error);
-
-  }
+export const login = async (loginData: LoginPayload): Promise<LoginResponse> => {
+  const response = await axiosApi.post(LOGIN_ENDPOINT, loginData);
+  return response.data;
 };
 

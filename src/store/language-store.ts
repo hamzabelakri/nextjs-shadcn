@@ -6,6 +6,7 @@ import i18n from '@/lib/i18n/i18n';
 
 type LanguageState = {
   currentLanguage: string;
+  isHydrated: boolean;
   changeLanguage: (lang: string) => void;
   syncLanguage: (lang: string) => void; // Internal sync without triggering i18n
 };
@@ -14,6 +15,7 @@ export const useLanguageStore = create<LanguageState>()(
   persist(
     (set, get) => ({
       currentLanguage: 'en', // Default to English for SSR
+      isHydrated: false,
 
       changeLanguage: (lang: string) => {
         if (typeof window !== 'undefined' && i18n.isInitialized) {
@@ -38,8 +40,11 @@ export const useLanguageStore = create<LanguageState>()(
     }),
     {
       name: 'language-storage',
-      // Only persist on client side
-      skipHydration: true,
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.isHydrated = true;
+        }
+      },
     }
   )
 );

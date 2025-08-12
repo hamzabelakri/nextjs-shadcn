@@ -30,15 +30,15 @@ if (typeof window !== 'undefined') {
     .init({
       resources,
       fallbackLng: 'en', // Default language
-      lng: 'en', // Start with English to prevent hydration mismatch
+      lng: 'en', // Always start with English to prevent hydration mismatch
       supportedLngs: ['en', 'ar', 'fr'], // Supported languages
       interpolation: {
         escapeValue: false, // React already escapes values
       },
       detection: {
-        // Configure language detection
-        order: ['localStorage', 'navigator', 'htmlTag'],
-        caches: ['localStorage'],
+        // Disable automatic detection to prevent hydration issues
+        order: [],
+        caches: [],
       },
       // Prevent infinite loops
       debug: false,

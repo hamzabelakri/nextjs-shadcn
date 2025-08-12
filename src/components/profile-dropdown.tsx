@@ -35,9 +35,9 @@ export function ProfileDropdown() {
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-56' align='end' forceMount>
+      <DropdownMenuContent className='w-56 rtl:text-right' align='end' forceMount>
         <DropdownMenuLabel className='font-normal'>
-          <div className='flex flex-col space-y-1'>
+          <div className='flex flex-col space-y-1 rtl:items-end'>
             <p className='text-sm leading-none font-medium'>satnaing</p>
             <p className='text-muted-foreground text-xs leading-none'>
               satnaingdev@gmail.com
