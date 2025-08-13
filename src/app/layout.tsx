@@ -4,7 +4,6 @@ import "./globals.css";
 import { FontProvider } from "@/context/font-context";
 import { ThemeProvider } from "@/context/theme-context";
 import QueryProvider from "@/providers/query-provider";
-import I18nProvider from "@/providers/i18n-provider";
 import { Toaster } from "@/components/ui/sonner";
 import LanguageWrapper from "@/components/language-wrapper";
 
@@ -28,7 +27,6 @@ export default async function RootLayout({children}: Readonly<{children: React.R
     <html lang="en">
       <body className={`${inter.variable} ${mono.variable} antialiased`}>
         <QueryProvider>
-          <I18nProvider>
             <ThemeProvider defaultTheme="light" storageKey="ui-theme">
               <Toaster />
               <FontProvider>
@@ -37,7 +35,6 @@ export default async function RootLayout({children}: Readonly<{children: React.R
                 </LanguageWrapper>
               </FontProvider>
             </ThemeProvider>
-          </I18nProvider>
         </QueryProvider>
       </body>
     </html>

@@ -18,17 +18,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/password-input";
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
-import { login } from "@/lib/api/auth";
-import { useAuthStore } from "@/store/auth-store";
 import { useTranslation } from "react-i18next";
+import { useLogin } from "@/hooks/use-auth";
 
 type UserAuthFormProps = HTMLAttributes<HTMLFormElement>;
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const { t } = useTranslation();
-  const setAuth = useAuthStore((state) => state.setAuth);
-  const router = useRouter();
+const { mutate: login, isPending } = useLogin();
+
 
   const formSchema = z.object({
     email: z
@@ -58,17 +56,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     formState: { isSubmitting },
   } = form;
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    try {
-      const auth = await login(data);
-      console.log("Login success:", auth);
-      setAuth(auth);
-      router.push("/dashboard");
-
-    } catch (error: any) {
-      console.error("Login failed:", error);
-      // Later: toast.error(error.response?.data?.message || "Login failed");
-    } finally {
-    }
+     login(data);
   };
 
   return (

@@ -16,12 +16,14 @@ import Link from 'next/link'
 import { IconUser } from '@tabler/icons-react';
 import { redirect } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
+import { useLogout } from '@/hooks/use-auth';
 
 export function ProfileDropdown() {
   const { t } = useTranslation();
+  const logout  = useLogout();
   
   const handleLogout = () => {
-    redirect('/sign-in')
+    logout()
   }
   return (
     <DropdownMenu modal={false}>
