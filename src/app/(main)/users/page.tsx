@@ -2,9 +2,7 @@
 
 import { Main } from "@/components/layout/main";
 
-import { userListSchema } from "./data/schema";
-import { users } from "./data/users";
-import { useUserToolbarProps } from "./data/data";
+import { useUserToolbarProps } from "./table/data";
 
 import { DataTable } from "@/components/shared/react-table";
 import { IconUsers } from "@tabler/icons-react";
@@ -12,13 +10,13 @@ import { useUserColumns } from "./table/users-columns";
 import { UsersDialogs } from "./users-modal";
 import { useUsers } from "@/hooks/use-users";
 import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 
 export default function UsersPage() {
   const { t } = useTranslation();
-  const { data: userss, isLoading, isError, error } = useUsers();
-  console.log("**********",userss)
+  const { data: users, isLoading, isError, error } = useUsers();
+  const data = useMemo(() => users ?? [], [users]);
 
-  const userList = userListSchema.parse(users);
   const toolbarProps = useUserToolbarProps();
   const columns = useUserColumns();
   
@@ -33,9 +31,10 @@ export default function UsersPage() {
         </div>
         <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-y-0 lg:space-x-12">
           <DataTable
-            data={userList}
+            data={data}
             columns={columns}
             toolbarProps={toolbarProps}
+            isLoading={isLoading}
           />
         </div>
       </Main>

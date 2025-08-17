@@ -7,7 +7,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ConfirmDialog } from '@/components/confirm-dialog'
-import { User } from '../data/schema'
+import { User } from '@/lib/api/users'
 
 interface Props {
   open: boolean
@@ -48,7 +48,7 @@ export function UsersDeleteModal({ open, onOpenChange, currentRow }: Props) {
             <br />
             This action will permanently remove the user with the role of{' '}
             <span className='font-bold'>
-              {currentRow.role.toUpperCase()}
+              {currentRow.role.name.toUpperCase()}
             </span>{' '}
             from the system. This cannot be undone.
           </p>

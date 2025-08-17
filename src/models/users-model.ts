@@ -1,6 +1,3 @@
-import { toast } from "sonner";
-import axiosApi from "../axios";
-
 export interface Role {
   id: number;
   name: string;
@@ -12,6 +9,7 @@ export interface Role {
   updated_at: string;
 }
 
+export type UserStatus = "active" | "inactive" | "invited" | "suspended";
 
 export interface User {
   id: number;
@@ -19,18 +17,25 @@ export interface User {
   name: string;
   email: string;
   phone_number?: string;
-  status: string;
+  status: UserStatus;
   role_id: number;
   role: Role;
   created_at: string;
   updated_at: string;
 }
 
+export enum UserRole {
+  SUPER_ADMIN = "superadmin",
+  ADMIN = "admin",
+  MANAGER = "manager",
+  CASHIER = "cashier",
+}
 
-const USER_ENDPOINT = `/admin/users`;
+export enum UserStatusTypes {
+  ACTIVE = "active",
+  INACTIVE = "inactive",
+  INVITED = "invited",
+  SUSPENDED = "suspended",
+}
 
 
-export const getUsers = async (): Promise<User[]> => {
-  const response = await axiosApi.get(USER_ENDPOINT);
-  return response.data;
-};

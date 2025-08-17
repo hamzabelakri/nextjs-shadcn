@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUsers, User } from "@/lib/api/users";
+import { getUsers } from "@/api/users";
+import { User } from "@/models/users-model";
 
 export function useUsers() {
   return useQuery<User[], Error>({

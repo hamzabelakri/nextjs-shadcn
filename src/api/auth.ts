@@ -1,4 +1,4 @@
-import axiosApi from "../axios";
+import axiosApi from "@/lib/axios";
 
 export interface LoginPayload {
   email: string;

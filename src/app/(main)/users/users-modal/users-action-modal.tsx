@@ -25,8 +25,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/password-input";
 import { SelectDropdown } from "@/components/select-dropdown";
-import { callTypes, useUserTypes } from "../data/data";
-import { User } from "../data/schema";
+import { callTypes, useUserStatusFilters } from "../table/data";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import {
@@ -34,6 +33,7 @@ import {
   IconUserEdit,
   IconUserPlus,
 } from "@tabler/icons-react";
+import { User } from "@/models/users-model";
 
 const formSchema = z
   .object({
@@ -115,7 +115,7 @@ export function UsersActionModal({
   const isView = mode === "view";
   const isAdd = mode === "add";
   
-  const userTypes = useUserTypes();
+  const userTypes = useUserStatusFilters();
 
   const form = useForm<UserForm>({
     resolver: zodResolver(formSchema),

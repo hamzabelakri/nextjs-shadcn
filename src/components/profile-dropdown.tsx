@@ -23,7 +23,7 @@ export function ProfileDropdown() {
   const logout  = useLogout();
   
   const handleLogout = () => {
-    logout()
+    logout.mutate()
   }
   return (
     <DropdownMenu modal={false}>

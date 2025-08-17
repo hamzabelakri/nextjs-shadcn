@@ -281,9 +281,7 @@ export const en = {
   'last_year': 'Last year',
   
   // Profile Settings
-  'username': 'Username',
   'username_description': 'This is your public display name. It can be your real name or a pseudonym. You can only change this once every 30 days.',
-  'email': 'Email',
   'select_email_placeholder': 'Select a verified email to display',
   'email_settings_description': 'You can manage verified email addresses in your',
   'email_settings': 'email settings',

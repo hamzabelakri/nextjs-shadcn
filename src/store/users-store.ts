@@ -1,6 +1,6 @@
 "use client"
 
-import { User } from "@/app/(main)/users/data/schema"
+import { User } from "@/lib/api/users"
 import { create } from "zustand"
 
 type UsersDialogType = "invite" | "add" | "edit" | "delete" | "view"

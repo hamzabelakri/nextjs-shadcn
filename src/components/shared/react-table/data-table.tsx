@@ -27,6 +27,7 @@ import {
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar } from "./data-table-toolbar";
 import { Card } from "@/components/ui/card";
+import DataTableLoading from "./data-table-loading";
 
 declare module "@tanstack/react-table" {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -37,27 +38,27 @@ declare module "@tanstack/react-table" {
 
 interface ToolbarProps {
   filterPlaceholder?: string;
-  buttonLabel?:string
-  filerButtonLabel?: string
-  exportButtonLabel?: string
+  buttonLabel?: string;
+  filerButtonLabel?: string;
+  exportButtonLabel?: string;
   buttonIcon?: React.ComponentType<{
-    
-    size?: number;  
+    size?: number;
   }>;
-  onAddClick?: () => void;  
+  onAddClick?: () => void;
 }
 
-interface DataTableProps <TData extends RowData>{
+interface DataTableProps<TData extends RowData> {
   columns: ColumnDef<TData>[];
   data: TData[];
-  toolbarProps?:ToolbarProps
-
+  toolbarProps?: ToolbarProps;
+  isLoading?: boolean;
 }
 
 export function DataTable<TData extends RowData>({
   columns,
   data,
-  toolbarProps
+  toolbarProps,
+  isLoading,
 }: DataTableProps<TData>) {
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -88,7 +89,7 @@ export function DataTable<TData extends RowData>({
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar table={table} toolbarProps={toolbarProps}/>
+      <DataTableToolbar table={table} toolbarProps={toolbarProps} />
       <div className="rounded-md ">
         <Card paddingY="pb-4">
           <Table>
@@ -117,7 +118,16 @@ export function DataTable<TData extends RowData>({
               ))}
             </TableHeader>
             <TableBody>
-              {table.getRowModel().rows?.length ? (
+              {isLoading ? (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
+                    <DataTableLoading />
+                  </TableCell>
+                </TableRow>
+              ) : table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => (
                   <TableRow
                     key={row.id}
@@ -149,10 +159,9 @@ export function DataTable<TData extends RowData>({
               )}
             </TableBody>
           </Table>
-           <DataTablePagination table={table} />
+          <DataTablePagination table={table} />
         </Card>
       </div>
-     
     </div>
   );
 }

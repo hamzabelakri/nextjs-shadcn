@@ -22,19 +22,17 @@ export const metadata: Metadata = {
   description: "Asteroidea Template",
 };
 
-export default async function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
+export default async function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body className={`${inter.variable} ${mono.variable} antialiased`}>
         <QueryProvider>
-            <ThemeProvider defaultTheme="light" storageKey="ui-theme">
-              <Toaster />
-              <FontProvider>
-                <LanguageWrapper>
-                  {children}
-                </LanguageWrapper>
-              </FontProvider>
-            </ThemeProvider>
+          <ThemeProvider defaultTheme="light" storageKey="ui-theme">
+            <Toaster />
+            <FontProvider>{children}</FontProvider>
+          </ThemeProvider>
         </QueryProvider>
       </body>
     </html>

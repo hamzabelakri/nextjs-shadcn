@@ -30,7 +30,7 @@ if (typeof window !== 'undefined') {
     .init({
       resources,
       fallbackLng: 'en', // Default language
-      lng: 'en', // Start with English to prevent hydration mismatch
+      //lng: 'en', // Start with English to prevent hydration mismatch
       supportedLngs: ['en', 'ar', 'fr'], // Supported languages
       interpolation: {
         escapeValue: false, // React already escapes values
